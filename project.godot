@@ -12,7 +12,6 @@ config_version=5
 
 config/name="PSU Game Jam - June 2025"
 run/main_scene="uid://b38wjvim4a85l"
-run/main_scene="uid://dqij8rau88me5"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 

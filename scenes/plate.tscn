@@ -1,9 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://di75s73a4mdmn"]
 
 [ext_resource type="Texture2D" uid="uid://b758pt7xshkl4" path="res://icon.svg" id="1_2x0a8"]
-[ext_resource type="Script" uid="uid://drxre0v0wg6iw" path="res://scenes/plate.gd" id="2_qy4xk"]
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_yqjtg"]
+[ext_resource type="Script" uid="uid://drxre0v0wg6iw" path="res://scripts/plate.gd" id="2_qy4xk"]
+[ext_resource type="PackedScene" uid="uid://dmiu472ygpkbj" path="res://scenes/player.tscn" id="3_qy4xk"]
 
 [node name="Plate" type="Sprite3D"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
@@ -12,12 +11,5 @@ shaded = true
 texture = ExtResource("1_2x0a8")
 script = ExtResource("2_qy4xk")
 
-[node name="Player" type="CharacterBody3D" parent="."]
+[node name="Player" parent="." instance=ExtResource("3_qy4xk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3279, 0, 0)
-
-[node name="Model" type="CSGCylinder3D" parent="Player"]
-transform = Transform3D(0.1, 0, 0, 0, -4.37114e-09, -0.1, 0, 0.1, -4.37114e-09, 0, -4.97935e-09, -0.113914)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
-transform = Transform3D(0.1, 0, 0, 0, -4.37114e-09, -0.1, 0, 0.1, -4.37114e-09, 0, -5.12378e-09, -0.117218)
-shape = SubResource("CapsuleShape3D_yqjtg")

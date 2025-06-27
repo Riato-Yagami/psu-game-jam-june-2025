@@ -7,7 +7,7 @@
 [node name="MicroWave" parent="." instance=ExtResource("1_uwrxv")]
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.95925, 0.282559, 0, -0.282559, 0.95925, 0, 0.452764, 1.09584)
+transform = Transform3D(-1, -1.51808e-08, 8.60947e-08, 0, 0.984808, 0.173648, -8.74228e-08, 0.173648, -0.984808, 0, 0.718019, -1.32706)
 
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
 transform = Transform3D(0.173834, 0.553551, -0.814471, -0.115543, 0.832815, 0.541358, 0.977973, 0, 0.208731, -2.12521, 0.445893, 0)

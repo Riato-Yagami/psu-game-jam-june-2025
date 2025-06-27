@@ -1,15 +1,18 @@
 [gd_scene load_steps=4 format=3 uid="uid://di75s73a4mdmn"]
 
-[ext_resource type="Texture2D" uid="uid://b758pt7xshkl4" path="res://icon.svg" id="1_2x0a8"]
+[ext_resource type="Texture2D" uid="uid://boole03gas30c" path="res://sprites/plate.png" id="1_qy4xk"]
 [ext_resource type="Script" uid="uid://drxre0v0wg6iw" path="res://scripts/plate.gd" id="2_qy4xk"]
 [ext_resource type="PackedScene" uid="uid://dmiu472ygpkbj" path="res://scenes/player.tscn" id="3_qy4xk"]
 
-[node name="Plate" type="Sprite3D"]
+[node name="Plate" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
-gi_mode = 2
-shaded = true
-texture = ExtResource("1_2x0a8")
 script = ExtResource("2_qy4xk")
 
-[node name="Player" parent="." instance=ExtResource("3_qy4xk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3279, 0, 0)
+[node name="Sprite" type="Sprite3D" parent="."]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+shaded = true
+texture = ExtResource("1_qy4xk")
+
+[node name="Player" parent="." node_paths=PackedStringArray("plate") instance=ExtResource("3_qy4xk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.494446, 0, 0)
+plate = NodePath("..")

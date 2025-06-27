@@ -1,8 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://cmk2sbg4cq2sc"]
+[gd_scene load_steps=3 format=3 uid="uid://cmk2sbg4cq2sc"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_7dm0k"]
+[ext_resource type="PackedScene" uid="uid://b38wjvim4a85l" path="res://scenes/audio_manager.tscn" id="1_0xm2m"]
+[ext_resource type="Script" uid="uid://2f14srv1ljek" path="res://scripts/audio_manager.gd" id="2_h2yge"]
 
 [node name="Node2D" type="Node2D"]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_7dm0k")
+[node name="AudioManager" parent="." instance=ExtResource("1_0xm2m")]
+script = ExtResource("2_h2yge")

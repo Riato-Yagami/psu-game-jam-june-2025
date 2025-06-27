@@ -1,28 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://dqij8rau88me5"]
+[gd_scene load_steps=2 format=3 uid="uid://dqij8rau88me5"]
 
-[ext_resource type="Texture2D" uid="uid://b758pt7xshkl4" path="res://icon.svg" id="1_yqjtg"]
-[ext_resource type="Script" uid="uid://drxre0v0wg6iw" path="res://scenes/plate.gd" id="2_lnu2h"]
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_yqjtg"]
+[ext_resource type="PackedScene" uid="uid://c8eyx0mco4tw" path="res://scenes/micro_wave.tscn" id="1_uwrxv"]
 
 [node name="Game" type="Node3D"]
 
-[node name="Plate" type="Sprite3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
-gi_mode = 2
-shaded = true
-texture = ExtResource("1_yqjtg")
-script = ExtResource("2_lnu2h")
-
-[node name="Player" type="CharacterBody3D" parent="Plate"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3279, 0, 0)
-
-[node name="Model" type="CSGCylinder3D" parent="Plate/Player"]
-transform = Transform3D(0.1, 0, 0, 0, -4.37114e-09, -0.1, 0, 0.1, -4.37114e-09, 0, -4.97935e-09, -0.113914)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Plate/Player"]
-transform = Transform3D(0.1, 0, 0, 0, -4.37114e-09, -0.1, 0, 0.1, -4.37114e-09, 0, -5.12378e-09, -0.117218)
-shape = SubResource("CapsuleShape3D_yqjtg")
+[node name="MicroWave" parent="." instance=ExtResource("1_uwrxv")]
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.95925, 0.282559, 0, -0.282559, 0.95925, 0, 0.452764, 1.09584)

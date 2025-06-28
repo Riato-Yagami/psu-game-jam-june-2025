@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dqij8rau88me5"]
 
 [ext_resource type="PackedScene" uid="uid://c8eyx0mco4tw" path="res://scenes/microwave.tscn" id="1_uwrxv"]
-[ext_resource type="PackedScene" uid="uid://dtyifegf6gr8r" path="res://scenes/laserContainer.tscn" id="2_yqjtg"]
+[ext_resource type="PackedScene" path="res://scenes/laserContainer.tscn" id="2_yqjtg"]
 
 [node name="Game" type="Node3D"]
 

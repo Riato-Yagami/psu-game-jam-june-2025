@@ -1,4 +1,3 @@
-
 extends Node
 
 var mic_capture: AudioEffectCapture
@@ -36,9 +35,15 @@ func _process(_delta):
 	var note = convertFrequencyToNote(getFrequency())
 	
 	
-	# TODO: call external function
-	print("Note: ", note)
 	
+	if note < 0:
+		return
+		
+		
+	var pos = getTargetPosition(note)
+	print("Note: ", note, " pos=[", pos.x, ",", pos.y, "]")
+	
+	# TODO: call external function (and give pos)
 
 
 
@@ -123,5 +128,34 @@ func detect_pitch(samples: PackedFloat32Array) -> float:
 	return sample_rate / best_offset
 
 
-# def getTargetPosition():
+func getTargetPosition(note):
+	var intNote = int(note)
+	var current = TargetPointList.LIST[intNote]
+	var next = TargetPointList.LIST[0 if intNote==6 else 0]
+	
+	var decalage = note - intNote
+	
+	return TargetPoint.interpolate(current, next, decalage)
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	

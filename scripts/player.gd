@@ -17,10 +17,10 @@ var direction : Vector2
 
 @export var inJump : bool
 
-@export var jumpWindupTimer : float = .1
-@export var jumpInvincibleTimer : float = 1
-@export var jumpRecoveryTimer : float = .2
-@export var jumpCooldownTimer : float = 1
+var jumpWindupTimer: float
+var jumpInvincibleTimer: float
+var jumpRecoveryTimer: float
+var jumpCooldownTimer: float
 
 func _ready():
 	SceneManager.game.on_game_start.connect(_reset_player)
@@ -28,6 +28,7 @@ func _ready():
 func _reset_player():
 	currentHealth = maxHealth
 	inJump = false
+	$CollisionShape3D.disabled = false
 	#active = true
 
 func _physics_process(delta: float) -> void:
@@ -47,18 +48,38 @@ func _physics_process(delta: float) -> void:
 	var movementForce = Vector3(rotated_dir.x,0,rotated_dir.y) * speed
 	position += movementForce * delta
 	#$AnimationTree.set("parameters/conditions/idleToRun", movementForce.length() > runThreshold);
-	if (movementForce.length() > runThreshold):
+	if (movementForce.length() > runThreshold && !inJump):
 		$AnimationPlayer.play("Run")
 		var target_angle = atan2(movementForce.x, movementForce.z)
 		rotation.y = target_angle
 		#self.rotation_degrees = Vector3(self.rotation_degrees.x, self.rotation_degrees.y - angle, self.rotation_degrees.z)
-	else:
+	else: if (!inJump) :
 		$AnimationPlayer.play("Idle")
 	#$AnimationTree.set("parameters/conditions/runToIdle", movementForce.length() < runThreshold);
 	if(position.distance_to(Vector3.ZERO) > plate.radius) :
 		position = position.normalized() * plate.radius
 	
-	_recieve_damage(delta)
+	if (jumpWindupTimer > 0):
+		jumpWindupTimer -= delta
+		if (jumpWindupTimer <= 0):
+			jumpInvincibleTimer = jumpInvincibleDuration
+			$CollisionShape3D.disabled = true
+	else: if (jumpInvincibleTimer > 0):
+		jumpInvincibleTimer -= delta
+		if (jumpInvincibleTimer <= 0):
+			jumpRecoveryTimer = jumpRecoveryDuration
+			$CollisionShape3D.disabled = false
+	else: if (jumpRecoveryTimer > 0):
+		jumpRecoveryTimer -= delta
+		if (jumpRecoveryTimer <= 0):
+			jumpCooldownTimer = jumpCooldownDuration
+			inJump = false
+	else: if (jumpCooldownTimer > 0):
+		jumpCooldownTimer -= delta
+		if (jumpCooldownTimer <= 0):
+			jumpCooldownTimer = 0
+	
+	#_recieve_damage(delta)
 	#rotation = angle 
 
 func _recieve_damage(value: float) -> void:
@@ -71,5 +92,6 @@ func _recieve_damage(value: float) -> void:
 func _try_jump():
 	if (!inJump && jumpCooldownTimer <= 0):
 		$AnimationPlayer.play("Jump")
+		print("jump")
 		inJump = true
 		jumpWindupTimer = jumpWindupDuration

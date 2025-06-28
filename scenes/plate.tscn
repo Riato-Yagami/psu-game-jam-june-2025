@@ -6,14 +6,16 @@
 [ext_resource type="PackedScene" uid="uid://dmiu472ygpkbj" path="res://scenes/player.tscn" id="3_qy4xk"]
 
 [node name="Plate" type="Node3D"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 script = ExtResource("2_qy4xk")
 plate_dimensions = ExtResource("2_e0qvw")
 
-[node name="Sprite" type="Sprite3D" parent="."]
+[node name="Player" parent="." node_paths=PackedStringArray("plate") instance=ExtResource("3_qy4xk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
+plate = NodePath("..")
+
+[node name="Node3D" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+
+[node name="Sprite" type="Sprite3D" parent="Node3D"]
 shaded = true
 texture = ExtResource("1_qy4xk")
-
-[node name="Player" parent="." node_paths=PackedStringArray("plate") instance=ExtResource("3_qy4xk")]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0.494446, -1.49639e-08, -0.342335)
-plate = NodePath("..")

@@ -3,6 +3,8 @@ class_name LaserContainer
 
 const laserRes = preload("res://scenes/laser.tscn")
 
+var laser = null
+
 
 func spawnLaser(x, y, aimX, aimY):
 	var laser = laserRes.instantiate()
@@ -11,5 +13,4 @@ func spawnLaser(x, y, aimX, aimY):
 	print("Spawn laser (", x, ",", y, ") to (", aimX, ",", aimY, ")")
 
 func _ready():
-	# TODO: remove this line
-	spawnLaser(0, 0, 1, 1)
+	laser = spawnLaser(0, 0, 0, 1)

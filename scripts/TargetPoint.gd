@@ -10,7 +10,7 @@ var controlY
 func _init(_x, _y):
 	x = _x
 	y = _y
-	
+
 
 static func interpolate(a: TargetPoint, b: TargetPoint, pos: float) -> Vector2:
 	var dx = b.x - a.x

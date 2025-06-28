@@ -10,16 +10,32 @@ var direction : Vector2
 @export var maxHealth : float = 10
 #@export var active : bool
 
+@export var jumpWindupDuration : float = .1
+@export var jumpInvincibleDuration : float = 1
+@export var jumpRecoveryDuration : float = .2
+@export var jumpCooldownDuration : float = 1
+
+@export var inJump : bool
+
+@export var jumpWindupTimer : float = .1
+@export var jumpInvincibleTimer : float = 1
+@export var jumpRecoveryTimer : float = .2
+@export var jumpCooldownTimer : float = 1
+
 func _ready():
 	SceneManager.game.on_game_start.connect(_reset_player)
 
 func _reset_player():
 	currentHealth = maxHealth
+	inJump = false
 	#active = true
 
 func _physics_process(delta: float) -> void:
 	if (!SceneManager.game.in_game):
 		return
+		
+	if (Input.is_action_just_pressed("action")):
+		_try_jump()
 	
 	direction = Input.get_vector("move_right","move_left","move_down","move_up")
 	#print("direction = ",direction)
@@ -49,4 +65,11 @@ func _recieve_damage(value: float) -> void:
 	currentHealth -= value
 	if (currentHealth <= 0):
 		#active = false
+		$AnimationPlayer.play("Death")
 		SceneManager.game.game_over(false)
+
+func _try_jump():
+	if (!inJump && jumpCooldownTimer <= 0):
+		$AnimationPlayer.play("Jump")
+		inJump = true
+		jumpWindupTimer = jumpWindupDuration

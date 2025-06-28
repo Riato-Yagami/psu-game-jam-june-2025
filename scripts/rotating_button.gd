@@ -1,6 +1,20 @@
 extends PanelButton
 class_name RotatingButton
 
+@export var rotating_speed : float = 300
 var angle : float :
 	set(_value) : sprite.rotation.z = _value / 180 * PI
 	get : return sprite.rotation.z
+
+func _ready() -> void:
+	_update_turn(0)
+	
+func _process(delta: float) -> void:
+	if(hand_sprite.visible):
+		var axis : int = 1 if Input.is_action_pressed("move_right") else  (-1 if Input.is_action_pressed("move_left") else 0)
+		if(axis != 0):
+			_update_turn(axis * delta * rotating_speed)
+		
+func _update_turn(axis : float = 0):
+	#return
+	SceneManager.game.time_manager.incr_timer(axis)

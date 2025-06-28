@@ -5,11 +5,20 @@ var is_connected := false
 var time_passed := 0.0
 
 func _ready():
-	var err = tcp.connect_to_host("127.0.0.1", 12345)
-	if err != OK:
-		print("Erreur de connexion :", err)
+	var is_windows := OS.get_name() == "Windows"
+	var script := ProjectSettings.globalize_path(
+		"res://launch.bat" if is_windows else "res://launch.sh"
+	)
+	var interpreter := "cmd" if is_windows else "bash"
+	var args := ["/C", script] if is_windows else [script]
+
+	var result := OS.create_process(interpreter, args)
+	if result == -1:
+		push_error("Échec du lancement du serveur Python.")
 	else:
-		print("Connexion demandée…")
+		print("Serveur Python lancé.")
+
+
 
 func _process(delta):
 	tcp.poll()

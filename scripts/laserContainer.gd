@@ -9,7 +9,6 @@ var laser = null
 func spawnLaser(x, y, aimX, aimY):
 	var laser = laserRes.instantiate()
 	add_child(laser)
-	laser.initialize()
 	print("Spawn laser (", x, ",", y, ") to (", aimX, ",", aimY, ")")
 
 func _ready():

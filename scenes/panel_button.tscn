@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://c4y86xg1sy6sb"]
+
+[ext_resource type="Script" uid="uid://dookb5yv3wo5b" path="res://scripts/panel-button.gd" id="1_iyvcf"]
+[ext_resource type="Texture2D" uid="uid://6vne2f51qpb5" path="res://sprites/microwave/buttons/round-button.png" id="2_x7p4d"]
+
+[node name="PanelButton" type="Node3D"]
+script = ExtResource("1_iyvcf")
+
+[node name="Sprite" type="Sprite3D" parent="."]
+shaded = true
+texture = ExtResource("2_x7p4d")

@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://c58qpdpnj1m0m"]
+
+[ext_resource type="Script" uid="uid://hhso2n2mu1av" path="res://scripts/door.gd" id="1_uvdjg"]
+[ext_resource type="Texture2D" uid="uid://canq18luyjsdp" path="res://sprites/microwave/door-face.png" id="2_83dcw"]
+
+[node name="Door" type="Node3D" node_paths=PackedStringArray("anchor")]
+script = ExtResource("1_uvdjg")
+anchor = NodePath("Anchor")
+
+[node name="Anchor" type="Node3D" parent="."]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 2.19539, 0, 0)
+
+[node name="Face" type="Sprite3D" parent="Anchor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.19539, 0, -0.00999999)
+shaded = true
+texture = ExtResource("2_83dcw")

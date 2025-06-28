@@ -7,7 +7,7 @@ class_name Plate
 @export var plate_dimensions : Dimensions
 
 var radius : float : 
-	get : return plate_dimensions.width / 100 # inputed as mm
+	get : return plate_dimensions.width / 2 / 100 # inputed as mm
 
 func _process(delta: float) -> void:
 	#return

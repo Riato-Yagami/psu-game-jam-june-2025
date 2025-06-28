@@ -40,3 +40,18 @@ func connect_audio():
 		print("Erreur de connexion :", err)
 	else:
 		print("Connexion demandée…")
+
+
+
+func _input(event):
+	if event is InputEventMouseButton:
+		var laserContainer = $LaserContainer
+		var laser = laserContainer.laser
+		
+		if not laser:
+			return
+		
+		if event.button_index == MOUSE_BUTTON_WHEEL_UP and event.pressed:
+			laserContainer.laser.scrollWayUp()
+		elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN and event.pressed:
+			laserContainer.laser.scrollWayDown()

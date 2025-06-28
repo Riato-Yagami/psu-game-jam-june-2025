@@ -6,10 +6,10 @@ const laserRes = preload("res://scenes/laser.tscn")
 var laser = null
 
 
-func spawnLaser(x, y, aimX, aimY):
-	var laser = laserRes.instantiate()
-	add_child(laser)
-	print("Spawn laser (", x, ",", y, ") to (", aimX, ",", aimY, ")")
+func spawnLaser():
+	var l = laserRes.instantiate()
+	add_child(l)
+	return l
 
 func _ready():
-	laser = spawnLaser(0, 0, 0, 1)
+	laser = spawnLaser()

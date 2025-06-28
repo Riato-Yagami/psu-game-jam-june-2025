@@ -8,13 +8,31 @@ class_name Laser
 var pshhCooldown : float = 1
 var pshhTimer : float = 0
 
+
+const SCROLL_WAY_SPEED = PI/15
+const SCROLL_WAY_MAX_SPEED = 5 * SCROLL_WAY_SPEED
+var scrollWay = 0
+
 func _init():
 	position = Vector3(0, 0, POS_Z)
 
-func setAngle(note):
-	var angle = note * 7 / (2 * PI)
+
+func setAngle(a):
+	rotation.y = a
+
+func scrollWayUp():
+	scrollWay += SCROLL_WAY_SPEED
+	if scrollWay > SCROLL_WAY_MAX_SPEED:
+		scrollWay = SCROLL_WAY_MAX_SPEED
+	
+func scrollWayDown():
+	scrollWay -= SCROLL_WAY_SPEED
+	if scrollWay < -SCROLL_WAY_MAX_SPEED:
+		scrollWay = -SCROLL_WAY_MAX_SPEED
 
 func _process(delta: float) -> void:
+	rotation.y += scrollWay * delta
+	
 	if(raycast.is_colliding() and SceneManager.game.in_game):
 		pshh(delta)
 		SceneManager.game.player._recieve_damage(delta)

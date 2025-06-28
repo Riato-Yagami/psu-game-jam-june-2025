@@ -25,3 +25,4 @@ func initialize(x, y, aimX, aimY):
 
 func _physics_process(delta):
 	position += velocity * delta
+	

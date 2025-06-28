@@ -6,7 +6,7 @@ class_name Laser
 @export var SPEED = 1
 
 var velocity: Vector3
-
+var spawnPosition: Vector3
 
 func _init():
 	pass
@@ -14,6 +14,7 @@ func _init():
 
 func initialize(x, y, aimX, aimY):
 	position = Vector3(x, y, POS_Z)
+	spawnPosition = Vector3(x, y, POS_Z)
 	
 	# Define target
 	var dir = Vector3(aimX - x, aimY - y, 0).normalized()

@@ -11,7 +11,7 @@ func _ready() -> void:
 	root = get_tree().root
 	main = root.get_node("Main")
 	game = main.get_node("Game")
-	
+
 func _process(delta):
 	if(Input.is_action_just_pressed("escape")):
 		quit_game()

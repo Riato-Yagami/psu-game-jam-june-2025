@@ -10,7 +10,7 @@ func _init():
 
 
 func setAngle(note):
-	var angle = note * 7/6.28318530718
+	var angle = note * 7 / (2 * PI) 
 	
 	
 	

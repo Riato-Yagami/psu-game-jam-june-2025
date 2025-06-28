@@ -1,6 +1,29 @@
-[gd_scene load_steps=2 format=3 uid="uid://di8xtqma6f0jn"]
+[gd_scene load_steps=3 format=3 uid="uid://di8xtqma6f0jn"]
 
 [ext_resource type="Script" uid="uid://dps27etce03h0" path="res://scripts/laser.gd" id="1_xmihv"]
+[ext_resource type="Texture2D" uid="uid://1sqv1tjfumdh" path="res://sprites/wave/laser.png" id="2_a7dhc"]
 
 [node name="Laser" type="Node3D"]
 script = ExtResource("1_xmihv")
+
+[node name="Points" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.47, 0)
+
+[node name="Point2" type="Node3D" parent="Points"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6, 0, 0)
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="Points/Point2"]
+radius = 0.1
+
+[node name="Point1" type="Node3D" parent="Points"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6, 0, 0)
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="Points/Point1"]
+radius = 0.1
+
+[node name="RayCast3D" type="RayCast3D" parent="Points/Point1"]
+target_position = Vector3(-3.2, 0, 0)
+
+[node name="Sprite3D" type="Sprite3D" parent="Points"]
+transform = Transform3D(-4.37114e-08, -5, 0, 1, -2.18557e-07, 0, 0, 0, 1, 0, 0, 0)
+texture = ExtResource("2_a7dhc")

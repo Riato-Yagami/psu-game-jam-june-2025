@@ -22,6 +22,9 @@ var jumpInvincibleTimer: float
 var jumpRecoveryTimer: float
 var jumpCooldownTimer: float
 
+var walkCoolDown = 0.25
+var walkCoolDownTimer = 0
+
 func _ready():
 	SceneManager.game.on_game_start.connect(_reset_player)
 
@@ -31,6 +34,13 @@ func _reset_player():
 	$CollisionShape3D.disabled = false
 	#active = true
 
+func footStep(delta):
+	if(walkCoolDownTimer > 0) :
+		walkCoolDownTimer -= delta
+		return
+	SoundManager.play("footstep/1")
+	walkCoolDownTimer = walkCoolDown
+	
 func _physics_process(delta: float) -> void:
 	if (!SceneManager.game.in_game):
 		return
@@ -49,6 +59,7 @@ func _physics_process(delta: float) -> void:
 	position += movementForce * delta
 	#$AnimationTree.set("parameters/conditions/idleToRun", movementForce.length() > runThreshold);
 	if (movementForce.length() > runThreshold && !inJump):
+		footStep(delta)
 		$AnimationPlayer.play("Run")
 		var target_angle = atan2(movementForce.x, movementForce.z)
 		rotation.y = target_angle

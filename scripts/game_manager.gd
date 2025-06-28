@@ -23,6 +23,7 @@ func start_game():
 	microwave.door.open()
 	microwave.panel_buttons.hide_hand()
 	in_game = true
+	SoundManager.play("beep")
 	emit_signal("on_game_start")
 	connect_audio()
 		

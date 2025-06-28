@@ -78,4 +78,3 @@ spot_angle = 65.38
 [connection signal="input_signal" from="Frame/Face/ControlPanel/Buttons/OpenButton" to="Frame/Face/Door" method="_on_open_button_input_signal"]
 
 [editable path="Frame/Face/ControlPanel"]
-[editable path="Frame/Face/ControlPanel/Buttons/OpenButton"]

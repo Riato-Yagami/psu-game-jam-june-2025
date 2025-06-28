@@ -22,3 +22,5 @@ func _physics_process(delta: float) -> void:
 	$AnimationTree.set("parameters/conditions/runToIdle", movementForce.length() < runThreshold);
 	if(position.distance_to(Vector3.ZERO) > plate.radius) :
 		position = position.normalized() * plate.radius
+	
+	#rotation = angle 

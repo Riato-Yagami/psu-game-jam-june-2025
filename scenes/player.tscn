@@ -135,7 +135,7 @@ libraries = {
 [node name="PastaBoxParent" type="Node3D" parent="."]
 
 [node name="PastaBox" parent="PastaBoxParent" instance=ExtResource("2_g2els")]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+transform = Transform3D(0.16287, 0, 0, 0, 0.187072, 0, 0, 0, 0.16287, 0, 0, 0)
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeBlendTree_qlg0r")

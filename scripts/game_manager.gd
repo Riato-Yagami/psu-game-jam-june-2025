@@ -1,6 +1,8 @@
 extends Node3D
 class_name GameManager
 
+var tcp := StreamPeerTCP.new()
+
 @export var microwave : Microwave
 @export var time_manager : TimeManager
 
@@ -18,6 +20,7 @@ func start_game():
 	microwave.panel_buttons.hide_hand()
 	in_game = true
 	emit_signal("on_game_start")
+	connect_audio()
 		
 func game_over(player_win : bool = true):
 	in_game = false
@@ -26,3 +29,9 @@ func game_over(player_win : bool = true):
 	microwave.door.close()
 	microwave.panel_buttons.select_button(microwave.panel_buttons.current_button_id)
 	
+func connect_audio():
+	var err = tcp.connect_to_host("127.0.0.1", 12345)
+	if err != OK:
+		print("Erreur de connexion :", err)
+	else:
+		print("Connexion demandée…")

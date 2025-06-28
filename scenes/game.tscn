@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dqij8rau88me5"]
+[gd_scene load_steps=3 format=3 uid="uid://dqij8rau88me5"]
 
 [ext_resource type="PackedScene" uid="uid://c8eyx0mco4tw" path="res://scenes/microwave.tscn" id="1_uwrxv"]
+[ext_resource type="PackedScene" uid="uid://dtyifegf6gr8r" path="res://scenes/laserContainer.tscn" id="2_yqjtg"]
 
 [node name="Game" type="Node3D"]
 
@@ -11,3 +12,5 @@ transform = Transform3D(-1, -1.51808e-08, 8.60947e-08, 1.44741e-08, 0.942467, 0.
 
 [node name="Sun" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.805804, 0.108608, 0.582137, 0, -0.983038, 0.183402, 0.592182, -0.147786, -0.792136, 3.77098, 3.02516, -6.34141)
+
+[node name="LaserContainer" parent="." instance=ExtResource("2_yqjtg")]

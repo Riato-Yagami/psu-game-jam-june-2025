@@ -36,7 +36,8 @@ func _process(delta):
 
 
 func setLaserAngle(note):
-	print(note)
+	var laserContainer = SceneManager.get_node("Main/Game/LaserContainer")
+	laserContainer.laser.setAngle(note)
 	
 	
 	

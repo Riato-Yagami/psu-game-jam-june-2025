@@ -5,6 +5,7 @@ class_name Plate
 @export var microwave : Microwave
 
 @export var plate_dimensions : Dimensions
+@export var player : Player
 
 var radius : float : 
 	get : return plate_dimensions.width / 2 / 100 # inputed as mm

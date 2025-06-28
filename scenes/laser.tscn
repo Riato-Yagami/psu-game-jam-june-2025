@@ -1,10 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://di8xtqma6f0jn"]
+[gd_scene load_steps=6 format=3 uid="uid://di8xtqma6f0jn"]
 
 [ext_resource type="Script" uid="uid://dps27etce03h0" path="res://scripts/laser.gd" id="1_xmihv"]
 [ext_resource type="Texture2D" uid="uid://1sqv1tjfumdh" path="res://sprites/wave/laser.png" id="2_a7dhc"]
+[ext_resource type="Material" uid="uid://y3swu0ogmn4x" path="res://shaders/beam.tres" id="2_jjj73"]
+[ext_resource type="Material" uid="uid://bauf6uicb4ua0" path="res://shaders/beam3D.tres" id="4_412cd"]
 
-[node name="Laser" type="Node3D"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_jjj73"]
+size = Vector2(4, 2)
+
+[node name="Laser" type="Node3D" node_paths=PackedStringArray("raycast")]
 script = ExtResource("1_xmihv")
+raycast = NodePath("Points/Point1/RayCast3D")
 
 [node name="Points" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.47, 0)
@@ -13,17 +19,29 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.47, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6, 0, 0)
 
 [node name="CSGSphere3D" type="CSGSphere3D" parent="Points/Point2"]
+visible = false
 radius = 0.1
 
 [node name="Point1" type="Node3D" parent="Points"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6, 0, 0)
 
 [node name="CSGSphere3D" type="CSGSphere3D" parent="Points/Point1"]
+visible = false
 radius = 0.1
 
 [node name="RayCast3D" type="RayCast3D" parent="Points/Point1"]
 target_position = Vector3(-3.2, 0, 0)
+collision_mask = 2
 
 [node name="Sprite3D" type="Sprite3D" parent="Points"]
 transform = Transform3D(-4.37114e-08, -5, 0, 1, -2.18557e-07, 0, 0, 0, 1, 0, 0, 0)
+visible = false
+material_override = ExtResource("2_jjj73")
+shaded = true
 texture = ExtResource("2_a7dhc")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.219982, 0.975504, 0, -0.975504, 0.219982, 0, 0.514808, 0)
+material_overlay = ExtResource("4_412cd")
+transparency = 1.0
+mesh = SubResource("PlaneMesh_jjj73")

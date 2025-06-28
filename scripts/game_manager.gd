@@ -5,10 +5,14 @@ var tcp := StreamPeerTCP.new()
 
 @export var microwave : Microwave
 @export var time_manager : TimeManager
+var player : Player
 
 var in_game : bool = false
 signal on_game_start
 
+func _ready() -> void:
+	player = microwave.plate.player
+	
 func _process(delta: float) -> void:
 	pass
 	#if(Input.is_action_just_pressed("move_left")):

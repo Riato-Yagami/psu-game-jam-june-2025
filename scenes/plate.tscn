@@ -5,9 +5,10 @@
 [ext_resource type="Script" uid="uid://drxre0v0wg6iw" path="res://scripts/plate.gd" id="2_qy4xk"]
 [ext_resource type="PackedScene" uid="uid://dmiu472ygpkbj" path="res://scenes/player.tscn" id="3_qy4xk"]
 
-[node name="Plate" type="Node3D"]
+[node name="Plate" type="Node3D" node_paths=PackedStringArray("player")]
 script = ExtResource("2_qy4xk")
 plate_dimensions = ExtResource("2_e0qvw")
+player = NodePath("Player")
 
 [node name="Player" parent="." node_paths=PackedStringArray("plate") instance=ExtResource("3_qy4xk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)

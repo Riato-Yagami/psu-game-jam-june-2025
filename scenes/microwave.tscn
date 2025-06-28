@@ -12,11 +12,12 @@
 [ext_resource type="Texture2D" uid="uid://bvvrexuvoddyb" path="res://sprites/microwave/top.png" id="7_upun8"]
 [ext_resource type="Texture2D" uid="uid://bcn4m1c322i4o" path="res://sprites/microwave/open-face.png" id="9_s8jgt"]
 
-[node name="Microwave" type="Node3D" node_paths=PackedStringArray("door", "panel_buttons")]
+[node name="Microwave" type="Node3D" node_paths=PackedStringArray("door", "panel_buttons", "plate")]
 script = ExtResource("1_7nepw")
 exterior_dimensions = ExtResource("2_ujawk")
 door = NodePath("Frame/Face/Door")
 panel_buttons = NodePath("Frame/Face/ControlPanel/Buttons")
+plate = NodePath("Plate")
 
 [node name="Plate" parent="." node_paths=PackedStringArray("microwave") instance=ExtResource("2_bf2ql")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.01, 0)

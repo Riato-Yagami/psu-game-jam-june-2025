@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Dimensions" load_steps=2 format=3 uid="uid://c5x1xdyuvrja7"]
+
+[ext_resource type="Script" uid="uid://cv84wvayg7wv4" path="res://scripts/dimensions.gd" id="1_y6tlg"]
+
+[resource]
+script = ExtResource("1_y6tlg")
+cavity_width = 370.0
+cavity_depth = 385.0
+cavity_height = 230.0
+width = 553.0
+depth = 488.0
+height = 343.0
+door_width = 426.5
+plate_diametre = 315.0
+metadata/_custom_type_script = "uid://cv84wvayg7wv4"

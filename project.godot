@@ -13,10 +13,11 @@ config_version=5
 config/name="PSU Game Jam - June 2025"
 run/main_scene="uid://dqij8rau88me5"
 config/features=PackedStringArray("4.4", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="res://sprites/icon.svg"
 
 [audio]
 
+buses/default_bus_layout="res://audio/default_bus_layout.tres"
 driver/enable_input=true
 
 [input]

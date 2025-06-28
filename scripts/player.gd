@@ -15,5 +15,5 @@ func _physics_process(delta: float) -> void:
 	direction.x * sin(angle) + direction.y * cos(angle))
 	#print("rotated_dir = ",rotated_dir)
 	position += Vector3(rotated_dir.x,rotated_dir.y,0) * delta * speed
-	if(position.distance_to(Vector3.ZERO) > plate.RADIUS) :
-		position = position.normalized() * plate.RADIUS
+	if(position.distance_to(Vector3.ZERO) > plate.radius) :
+		position = position.normalized() * plate.radius

@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://boole03gas30c"
-path.s3tc="res://.godot/imported/plate.png-b3180027a86b1f7bdf77b130b632465e.s3tc.ctex"
+path.s3tc="res://.godot/imported/plate.png-d407e7e1851fa86c135f5572304515b7.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://sprites/plate.png"
-dest_files=["res://.godot/imported/plate.png-b3180027a86b1f7bdf77b130b632465e.s3tc.ctex"]
+source_file="res://sprites/microwave/plate.png"
+dest_files=["res://.godot/imported/plate.png-d407e7e1851fa86c135f5572304515b7.s3tc.ctex"]
 
 [params]
 

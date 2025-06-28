@@ -1,7 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://dmiu472ygpkbj"]
+[gd_scene load_steps=16 format=3 uid="uid://dmiu472ygpkbj"]
 
 [ext_resource type="Script" uid="uid://vgmjrsoa1t7x" path="res://scripts/player.gd" id="1_3vyb7"]
 [ext_resource type="PackedScene" uid="uid://cynk8q12exnym" path="res://Models/PastaBox.glb" id="2_g2els"]
+[ext_resource type="Texture2D" uid="uid://8ihfacjuqecs" path="res://sprites/Particles/smoke_01.png" id="3_qhqgy"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_yqjtg"]
 height = 3.0
@@ -63,6 +64,13 @@ tracks/2/keys = {
 "update": 0,
 "values": [Vector3(0, 3.14159, 0)]
 }
+tracks/3/type = "position_3d"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PastaBoxParent")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = PackedFloat32Array(0, 1, 0, 0, 0)
 
 [sub_resource type="Animation" id="Animation_tuyoq"]
 resource_name = "Jump"
@@ -73,10 +81,10 @@ tracks/0/path = NodePath("PastaBoxParent:position")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.133333, 0.533333, 0.733333, 0.966667),
-"transitions": PackedFloat32Array(1, 1, 0.31864, 2.92817, 0.707106),
+"times": PackedFloat32Array(0, 0.133333, 0.733333, 0.966667),
+"transitions": PackedFloat32Array(1, 0.31864, 2.92817, 0.707106),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, -0.05, 0), Vector3(0, 0.3, 0), Vector3(0, 0.27, 0), Vector3(0, 0, 0)]
+"values": [Vector3(0, 0, 0), Vector3(0, 0.3, 0), Vector3(0, 0.27, 0), Vector3(0, 0, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -85,10 +93,10 @@ tracks/1/path = NodePath("PastaBoxParent:scale")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.133333, 0.333333, 0.966667),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.0666667, 0.966667),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector3(1, 1, 1), Vector3(1.1, 0.8, 1.1), Vector3(0.9, 1.1, 0.9), Vector3(1, 1, 1)]
+"values": [Vector3(1, 1, 1), Vector3(0.9, 1.1, 0.9), Vector3(1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_dqkch"]
@@ -136,6 +144,13 @@ tracks/3/keys = {
 "update": 0,
 "values": [Vector3(1, 1, 1)]
 }
+tracks/4/type = "position_3d"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("PastaBoxParent")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = PackedFloat32Array(0, 1, 0, 0, 0)
 
 [sub_resource type="Animation" id="Animation_qlg0r"]
 resource_name = "Run"
@@ -182,20 +197,33 @@ emission_shape_offset = Vector3(0, 0.8, 0)
 emission_shape_scale = Vector3(0.2, 0.2, 0.2)
 emission_shape = 1
 emission_sphere_radius = 1.0
-gravity = Vector3(0, 0.5, 0)
-scale_min = 0.1
-scale_max = 0.2
+gravity = Vector3(0, 0.6, 0)
+scale_min = 0.2
+scale_max = 0.4
 color_ramp = SubResource("GradientTexture1D_qhqgy")
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dqkch"]
+transparency = 1
+blend_mode = 1
+albedo_texture = ExtResource("3_qhqgy")
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
 [sub_resource type="QuadMesh" id="QuadMesh_qlg0r"]
+material = SubResource("StandardMaterial3D_dqkch")
 
 [node name="Player" type="CharacterBody3D"]
 collision_layer = 2
 script = ExtResource("1_3vyb7")
+speed = 1.3
 runThreshold = 0.0
-jumpInvincibleDuration = 0.8
+maxHealth = 4.0
+jumpWindupDuration = 0.05
+jumpInvincibleDuration = 0.7
 jumpRecoveryDuration = 0.1
-jumpCooldownDuration = 0.5
+jumpCooldownDuration = 0.1
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.0317383, -0.117218)
@@ -212,6 +240,6 @@ libraries = {
 transform = Transform3D(0.16287, 0, 0, 0, 0.187072, 0, 0, 0, 0.16287, 0, 0, 0)
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
-lifetime = 0.2
+lifetime = 0.3
 process_material = SubResource("ParticleProcessMaterial_dqkch")
 draw_pass_1 = SubResource("QuadMesh_qlg0r")

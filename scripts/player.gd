@@ -25,13 +25,19 @@ var jumpCooldownTimer: float
 var walkCoolDown = 0.25
 var walkCoolDownTimer = 0
 
+@export var maxSmokeParticles : int = 8
+
+#var smokeParticlesMaterial : ParticleProcessMaterial
+
 func _ready():
 	SceneManager.game.on_game_start.connect(_reset_player)
+	#smokeParticlesMaterial = $GPUParticles3D.process_material as ParticleProcessMaterial 
 
 func _reset_player():
 	currentHealth = maxHealth
 	inJump = false
 	$CollisionShape3D.disabled = false
+	$GPUParticles3D.amount_ratio = 0
 	#active = true
 
 func footStep(delta):
@@ -95,6 +101,8 @@ func _physics_process(delta: float) -> void:
 
 func _recieve_damage(value: float) -> void:
 	currentHealth -= value
+	#$GPUParticles3D.amount_ratio = maxSmokeParticles * (1 - currentHealth / maxHealth)
+	$GPUParticles3D.amount_ratio = (1 - currentHealth / maxHealth)
 	if (currentHealth <= 0):
 		#active = false
 		$AnimationPlayer.play("Death")

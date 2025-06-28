@@ -2,7 +2,9 @@ extends Node3D
 class_name Plate
 
 @export var rotation_speed : float = 1.0
-const RADIUS = 0.5
+@export var microwave : Microwave
+var radius : float : 
+	get : return microwave.dimensions.plate_radius / 100 # inputed as mm
 
 func _process(delta: float) -> void:
 	#return

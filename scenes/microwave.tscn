@@ -1,0 +1,65 @@
+[gd_scene load_steps=10 format=3 uid="uid://c8eyx0mco4tw"]
+
+[ext_resource type="Script" uid="uid://cvm010pisha4a" path="res://scripts/microwave.gd" id="1_7nepw"]
+[ext_resource type="PackedScene" uid="uid://di75s73a4mdmn" path="res://scenes/plate.tscn" id="2_bf2ql"]
+[ext_resource type="Resource" uid="uid://c5x1xdyuvrja7" path="res://resources/microwave-dimensions.tres" id="2_s8jgt"]
+[ext_resource type="Texture2D" uid="uid://bhapxglrlkc0j" path="res://sprites/microwave/back.png" id="3_s8jgt"]
+[ext_resource type="Texture2D" uid="uid://d2t4w8qsq3ot6" path="res://sprites/microwave/left.png" id="4_fjhug"]
+[ext_resource type="Texture2D" uid="uid://6qfjycdnd65f" path="res://sprites/microwave/right.png" id="5_ujawk"]
+[ext_resource type="Texture2D" uid="uid://cpnytfmq70p5w" path="res://sprites/microwave/bottom.png" id="6_iwsb8"]
+[ext_resource type="Texture2D" uid="uid://bvvrexuvoddyb" path="res://sprites/microwave/top.png" id="7_upun8"]
+[ext_resource type="Texture2D" uid="uid://bcn4m1c322i4o" path="res://sprites/microwave/open-face.png" id="9_s8jgt"]
+
+[node name="Microwave" type="Node3D"]
+script = ExtResource("1_7nepw")
+dimensions = ExtResource("2_s8jgt")
+
+[node name="Plate" parent="." node_paths=PackedStringArray("microwave") instance=ExtResource("2_bf2ql")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.01, 0)
+microwave = NodePath("..")
+
+[node name="Frame" type="Node3D" parent="."]
+
+[node name="Interior" type="Node3D" parent="Frame"]
+
+[node name="Sides" type="Node3D" parent="Frame/Interior"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.15, 0)
+
+[node name="Back" type="Sprite3D" parent="Frame/Interior/Sides"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.925)
+shaded = true
+texture = ExtResource("3_s8jgt")
+
+[node name="LR" type="Node3D" parent="Frame/Interior/Sides"]
+
+[node name="Left" type="Sprite3D" parent="Frame/Interior/Sides/LR"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.85, 0, 0)
+shaded = true
+texture = ExtResource("4_fjhug")
+
+[node name="Right" type="Sprite3D" parent="Frame/Interior/Sides/LR"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.85, 0, 0)
+shaded = true
+texture = ExtResource("5_ujawk")
+
+[node name="TB" type="Node3D" parent="Frame/Interior"]
+
+[node name="Bottom" type="Sprite3D" parent="Frame/Interior/TB"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+shaded = true
+texture = ExtResource("6_iwsb8")
+
+[node name="Top" type="Sprite3D" parent="Frame/Interior/TB"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 2.3, 0)
+shaded = true
+texture = ExtResource("7_upun8")
+
+[node name="OpenFace" type="Sprite3D" parent="Frame"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.15, -1.925)
+shaded = true
+texture = ExtResource("9_s8jgt")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(-0.407964, 0.392642, -0.824256, 0.174171, 0.919691, 0.351898, 0.896231, 0, -0.443588, -1.57585, 1.55087, -1.6909)
+spot_attenuation = 0.6
+spot_angle = 65.38

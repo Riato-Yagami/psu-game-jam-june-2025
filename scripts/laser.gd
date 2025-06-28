@@ -8,7 +8,11 @@ class_name Laser
 var velocity: Vector3
 
 
-func _init(x, y, aimX, aimY):
+func _init():
+	pass
+
+
+func initialize(x, y, aimX, aimY):
 	position = Vector3(x, y, POS_Z)
 	
 	# Define target

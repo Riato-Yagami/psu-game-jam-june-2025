@@ -8,8 +8,12 @@ signal input_signal
 #func _ready() -> void:
 	#_on_press()
 	
+func _press():
+	pass
+	
 func press():
-	input_signal.emit()
+	_press()
+	#input_signal.emit()
 
 func un_select():
 	hand_sprite.visible = false

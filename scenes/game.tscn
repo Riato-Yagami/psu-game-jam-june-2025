@@ -1,11 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://dqij8rau88me5"]
+[gd_scene load_steps=4 format=3 uid="uid://dqij8rau88me5"]
 
+[ext_resource type="Script" uid="uid://6c8hv56aecos" path="res://scripts/game_manager.gd" id="1_lnu2h"]
 [ext_resource type="PackedScene" uid="uid://c8eyx0mco4tw" path="res://scenes/microwave.tscn" id="1_uwrxv"]
 [ext_resource type="PackedScene" uid="uid://dtyifegf6gr8r" path="res://scenes/laserContainer.tscn" id="2_yqjtg"]
 
-[node name="Game" type="Node3D"]
+[node name="Game" type="Node3D" node_paths=PackedStringArray("microwave")]
+script = ExtResource("1_lnu2h")
+microwave = NodePath("Microwave")
 
-[node name="MicroWave" parent="." instance=ExtResource("1_uwrxv")]
+[node name="Microwave" parent="." instance=ExtResource("1_uwrxv")]
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(-1, -1.51808e-08, 8.60947e-08, 1.44741e-08, 0.942467, 0.3343, -8.62163e-08, 0.3343, -0.942467, 0, 2.21805, -4.60656)

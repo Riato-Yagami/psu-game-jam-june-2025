@@ -1,26 +1,59 @@
-[gd_scene load_steps=5 format=3 uid="uid://drvucuenjyus5"]
+[gd_scene load_steps=8 format=3 uid="uid://drvucuenjyus5"]
 
 [ext_resource type="Texture2D" uid="uid://dj2gnbaep5uq1" path="res://sprites/microwave/control-panel.png" id="1_fab17"]
 [ext_resource type="Script" uid="uid://bhenpk0xc5wcj" path="res://scripts/panel_buttons.gd" id="2_5q0ia"]
-[ext_resource type="PackedScene" uid="uid://c4y86xg1sy6sb" path="res://scenes/panel_button.tscn" id="2_o3t6x"]
 [ext_resource type="Texture2D" uid="uid://onb06cbcvg2" path="res://sprites/microwave/buttons/open-button.png" id="3_5q0ia"]
+[ext_resource type="Script" uid="uid://nsc8hlt4v7fj" path="res://scripts/rotating_button.gd" id="3_mori3"]
+[ext_resource type="Texture2D" uid="uid://6vne2f51qpb5" path="res://sprites/microwave/buttons/round-button.png" id="4_0etsd"]
+[ext_resource type="Texture2D" uid="uid://b6slr5m618gjv" path="res://sprites/hand/point.png" id="5_bsupa"]
+[ext_resource type="Script" uid="uid://cvpvk5qk3cubx" path="res://scripts/open_button.gd" id="7_0etsd"]
 
 [node name="ControlPanel" type="Sprite3D"]
+flip_h = true
 texture = ExtResource("1_fab17")
 
-[node name="Buttons" type="Node3D" parent="." node_paths=PackedStringArray("buttons")]
+[node name="Buttons" type="Node3D" parent="." node_paths=PackedStringArray("buttons", "time_button")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.1)
 script = ExtResource("2_5q0ia")
 buttons = [NodePath("TimeButton"), NodePath("OpenButton")]
+time_button = NodePath("TimeButton")
 
-[node name="TimeButton" parent="Buttons" instance=ExtResource("2_o3t6x")]
+[node name="TimeButton" type="Node3D" parent="Buttons"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.859, 0.1)
+script = ExtResource("3_mori3")
+metadata/_custom_type_script = "uid://nsc8hlt4v7fj"
 
-[node name="OpenButton" parent="Buttons" instance=ExtResource("2_o3t6x")]
+[node name="Sprite" type="Sprite3D" parent="Buttons/TimeButton"]
+sorting_offset = 5.0
+shaded = true
+texture = ExtResource("4_0etsd")
+
+[node name="Hand" type="Node3D" parent="Buttons/TimeButton"]
+
+[node name="Sprite" type="Sprite3D" parent="Buttons/TimeButton/Hand"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5246, -1.07117, -0.0708008)
+visible = false
+sorting_offset = 10.0
+flip_h = true
+shaded = true
+texture = ExtResource("5_bsupa")
+
+[node name="OpenButton" type="Node3D" parent="Buttons"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.04, -1.101, 0.1)
+script = ExtResource("7_0etsd")
+metadata/_custom_type_script = "uid://cvpvk5qk3cubx"
 
-[node name="Sprite" parent="Buttons/OpenButton" index="0"]
+[node name="Sprite" type="Sprite3D" parent="Buttons/OpenButton"]
+sorting_offset = 5.0
+shaded = true
 texture = ExtResource("3_5q0ia")
 
-[editable path="Buttons/TimeButton"]
-[editable path="Buttons/OpenButton"]
+[node name="Hand" type="Node3D" parent="Buttons/OpenButton"]
+
+[node name="Sprite" type="Sprite3D" parent="Buttons/OpenButton/Hand"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5246, -1.07117, -0.0708008)
+visible = false
+sorting_offset = 10.0
+flip_h = true
+shaded = true
+texture = ExtResource("5_bsupa")

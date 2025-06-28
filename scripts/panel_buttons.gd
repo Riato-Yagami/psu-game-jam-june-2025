@@ -2,6 +2,7 @@ extends Node
 class_name PanelButtons
 
 @export var buttons : Array[PanelButton]
+@export var time_button : RotatingButton
 
 #var button_id : int = 0
 var current_button_id = 0
@@ -17,7 +18,14 @@ func select_button(id : int) -> void :
 func press_button() -> void :
 	buttons[current_button_id].press()
 	
+func hide_hand() -> void :
+	buttons[current_button_id].un_select()
+	
 func _process(delta: float) -> void:
+	if(!SceneManager.game.in_game):
+		_update_button_selection()
+		
+func _update_button_selection():
 	var axis : int = 1 if Input.is_action_just_pressed("move_down") else  (-1 if Input.is_action_just_pressed("move_up") else 0)
 	if(axis!=0):
 		var id = current_button_id

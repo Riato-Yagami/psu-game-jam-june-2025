@@ -1,19 +1,40 @@
-[gd_scene load_steps=4 format=3 uid="uid://dqij8rau88me5"]
+[gd_scene load_steps=6 format=3 uid="uid://dqij8rau88me5"]
 
 [ext_resource type="Script" uid="uid://6c8hv56aecos" path="res://scripts/game_manager.gd" id="1_lnu2h"]
 [ext_resource type="PackedScene" uid="uid://c8eyx0mco4tw" path="res://scenes/microwave.tscn" id="1_uwrxv"]
 [ext_resource type="PackedScene" uid="uid://dtyifegf6gr8r" path="res://scenes/laserContainer.tscn" id="2_yqjtg"]
+[ext_resource type="Texture2D" uid="uid://dgmuhoswmgt0y" path="res://sprites/table.png" id="4_lbhrr"]
+
+[sub_resource type="Environment" id="Environment_lbhrr"]
+background_energy_multiplier = 1.09
+ambient_light_color = Color(0, 0, 0.635294, 1)
+tonemap_exposure = 1.19
+glow_intensity = 5.5
+fog_enabled = true
 
 [node name="Game" type="Node3D" node_paths=PackedStringArray("microwave")]
 script = ExtResource("1_lnu2h")
 microwave = NodePath("Microwave")
 
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_lbhrr")
+
 [node name="Microwave" parent="." instance=ExtResource("1_uwrxv")]
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-1, -1.51808e-08, 8.60947e-08, 1.44741e-08, 0.942467, 0.3343, -8.62163e-08, 0.3343, -0.942467, 0, 2.21805, -4.60656)
+transform = Transform3D(-1, -1.51807e-08, 8.60947e-08, 2.57584e-08, 0.889927, 0.456104, -8.3542e-08, 0.456104, -0.889927, 0, 2.71497, -5.83597)
 
 [node name="Sun" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.805804, 0.108608, 0.582137, 0, -0.983038, 0.183402, 0.592182, -0.147786, -0.792136, 3.77098, 3.02516, -6.34141)
 
 [node name="LaserContainer" parent="." instance=ExtResource("2_yqjtg")]
+
+[node name="Table" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.183941)
+
+[node name="Sprite3D" type="Sprite3D" parent="Table"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -0.937288)
+sorting_offset = -1.0
+flip_h = true
+shaded = true
+texture = ExtResource("4_lbhrr")

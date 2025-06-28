@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://c8eyx0mco4tw"]
+[gd_scene load_steps=13 format=3 uid="uid://c8eyx0mco4tw"]
 
 [ext_resource type="Script" uid="uid://cvm010pisha4a" path="res://scripts/microwave.gd" id="1_7nepw"]
 [ext_resource type="PackedScene" uid="uid://di75s73a4mdmn" path="res://scenes/plate.tscn" id="2_bf2ql"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://0hjdy6wkx2oo" path="res://scenes/control_panel.tscn" id="5_iwsb8"]
 [ext_resource type="Texture2D" uid="uid://6qfjycdnd65f" path="res://sprites/microwave/right.png" id="5_ujawk"]
 [ext_resource type="Texture2D" uid="uid://cpnytfmq70p5w" path="res://sprites/microwave/bottom.png" id="6_iwsb8"]
+[ext_resource type="Texture2D" uid="uid://c4txitf8ersom" path="res://sprites/hand/turn.png" id="7_iwsb8"]
 [ext_resource type="Texture2D" uid="uid://bvvrexuvoddyb" path="res://sprites/microwave/top.png" id="7_upun8"]
 [ext_resource type="Texture2D" uid="uid://bcn4m1c322i4o" path="res://sprites/microwave/open-face.png" id="9_s8jgt"]
 
@@ -36,6 +37,13 @@ texture = ExtResource("9_s8jgt")
 
 [node name="ControlPanel" parent="Frame/Face" instance=ExtResource("5_iwsb8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.76974, 0, 0)
+
+[node name="Hand" parent="Frame/Face/ControlPanel/Buttons/TimeButton" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.954055, 0)
+
+[node name="Sprite" parent="Frame/Face/ControlPanel/Buttons/TimeButton/Hand" index="0"]
+visible = true
+texture = ExtResource("7_iwsb8")
 
 [node name="Interior" type="Node3D" parent="Frame"]
 

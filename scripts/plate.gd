@@ -2,15 +2,59 @@ extends Node3D
 class_name Plate
 
 @export var rotation_speed : float = 1.0
+@export var rotation_speed_change : float = 1.0
+@export var target_rotation_speed : float = 1.0
 @export var microwave : Microwave
+
+@export var phase_target_speeds : Array[float] = []
+@export var phase_durations : Array[float] = []
+@export var phase_audio_strings : Array[String] = []
+
+var phase_options_count : int
+var duration_timer : float
+
+@export var reversal_duration : float
+var reversal_timer : float
 
 @export var plate_dimensions : Dimensions
 @export var player : Player
 
+var rng = RandomNumberGenerator.new()
+
 var radius : float : 
 	get : return plate_dimensions.width / 2 / 100 # inputed as mm
 
+func _ready():
+	SceneManager.game.on_game_start.connect(_set_random_phase)
+	phase_options_count = phase_target_speeds.size()
+	rng.randomize()  # Seeds the generator with a random value
+
+func _set_random_phase():
+	var phaseIndex = rng.randi_range(0, phase_options_count - 1)
+	duration_timer = phase_durations[phaseIndex]
+	if (target_rotation_speed > 0):
+		target_rotation_speed = - phase_target_speeds[phaseIndex]
+	else:
+		target_rotation_speed = phase_target_speeds[phaseIndex]
+	#SoundManager.play(phase_audio_strings[phaseIndex], 1, 1, duration_timer)
+
 func _process(delta: float) -> void:
+	if (!SceneManager.game.in_game):
+		return
+	
+	if (rotation_speed < target_rotation_speed):
+		rotation_speed += rotation_speed_change
+		if (rotation_speed > target_rotation_speed):
+			rotation_speed = target_rotation_speed
+	else: if (rotation_speed > target_rotation_speed):
+		rotation_speed -= rotation_speed_change
+		if (rotation_speed < target_rotation_speed):
+			rotation_speed = target_rotation_speed
+	
+	if (duration_timer > 0):
+		duration_timer -= delta
+		if (duration_timer <= 0):
+			_set_random_phase()
 	#return
 	rotate(Vector3.UP,rotation_speed * delta)
 	

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dmiu472ygpkbj"]
+[gd_scene load_steps=14 format=3 uid="uid://dmiu472ygpkbj"]
 
 [ext_resource type="Script" uid="uid://vgmjrsoa1t7x" path="res://scripts/player.gd" id="1_3vyb7"]
 [ext_resource type="PackedScene" uid="uid://cynk8q12exnym" path="res://Models/PastaBox.glb" id="2_g2els"]
@@ -66,7 +66,6 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id="Animation_tuyoq"]
 resource_name = "Jump"
-length = 1.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -74,7 +73,7 @@ tracks/0/path = NodePath("PastaBoxParent:position")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.633333, 0.833333, 1.33333),
+"times": PackedFloat32Array(0, 0.133333, 0.533333, 0.733333, 0.966667),
 "transitions": PackedFloat32Array(1, 1, 0.31864, 2.92817, 0.707106),
 "update": 0,
 "values": [Vector3(0, 0, 0), Vector3(0, -0.05, 0), Vector3(0, 0.3, 0), Vector3(0, 0.27, 0), Vector3(0, 0, 0)]
@@ -86,7 +85,7 @@ tracks/1/path = NodePath("PastaBoxParent:scale")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.433333, 1.33333),
+"times": PackedFloat32Array(0, 0.133333, 0.333333, 0.966667),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Vector3(1, 1, 1), Vector3(1.1, 0.8, 1.1), Vector3(0.9, 1.1, 0.9), Vector3(1, 1, 1)]
@@ -171,10 +170,32 @@ _data = {
 &"Run": SubResource("Animation_qlg0r")
 }
 
+[sub_resource type="Gradient" id="Gradient_g2els"]
+offsets = PackedFloat32Array(0, 0.133971, 0.851675, 1)
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_qhqgy"]
+gradient = SubResource("Gradient_g2els")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_dqkch"]
+emission_shape_offset = Vector3(0, 0.8, 0)
+emission_shape_scale = Vector3(0.2, 0.2, 0.2)
+emission_shape = 1
+emission_sphere_radius = 1.0
+gravity = Vector3(0, 0.5, 0)
+scale_min = 0.1
+scale_max = 0.2
+color_ramp = SubResource("GradientTexture1D_qhqgy")
+
+[sub_resource type="QuadMesh" id="QuadMesh_qlg0r"]
+
 [node name="Player" type="CharacterBody3D"]
 collision_layer = 2
 script = ExtResource("1_3vyb7")
 runThreshold = 0.0
+jumpInvincibleDuration = 0.8
+jumpRecoveryDuration = 0.1
+jumpCooldownDuration = 0.5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.0317383, -0.117218)
@@ -189,3 +210,8 @@ libraries = {
 
 [node name="PastaBox" parent="PastaBoxParent" instance=ExtResource("2_g2els")]
 transform = Transform3D(0.16287, 0, 0, 0, 0.187072, 0, 0, 0, 0.16287, 0, 0, 0)
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+lifetime = 0.2
+process_material = SubResource("ParticleProcessMaterial_dqkch")
+draw_pass_1 = SubResource("QuadMesh_qlg0r")

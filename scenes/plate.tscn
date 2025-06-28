@@ -7,12 +7,24 @@
 
 [node name="Plate" type="Node3D" node_paths=PackedStringArray("player")]
 script = ExtResource("2_qy4xk")
+rotation_speed_change = 0.3
+phase_target_speeds = Array[float]([0.5, 0.75, 1.0])
+phase_durations = Array[float]([6.0, 5.0, 4.0])
+phase_audio_strings = Array[String](["", "", ""])
 plate_dimensions = ExtResource("2_e0qvw")
 player = NodePath("Player")
 
 [node name="Player" parent="." node_paths=PackedStringArray("plate") instance=ExtResource("3_qy4xk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
 plate = NodePath("..")
+speed = null
+currentHealth = null
+maxHealth = null
+jumpWindupDuration = null
+jumpInvincibleDuration = null
+jumpRecoveryDuration = null
+jumpCooldownDuration = null
+inJump = null
 
 [node name="Node3D" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)

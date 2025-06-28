@@ -4,8 +4,8 @@ extends Node
 var mic_capture: AudioEffectCapture
 var buffer = []
 
-const SAMPLE_MIN_CEIL = 1.0
-const TRIGGER_COULDOWN = 1.0
+const SAMPLE_MIN_CEIL = 0.0
+const TRIGGER_COULDOWN = 0.1
 var triggerCouldown = TRIGGER_COULDOWN
 
 func _ready():
@@ -39,31 +39,44 @@ func _process(_delta):
 	# TODO: call external function
 	print("Note: ", note)
 	
-	
 
-const FREQUENCIES = [
-	261.63, # Do
-	293.66, # Re
-	329.63, # Mi
-	349.23, # Fa
-	392.00, # Sol
-	440.00, # La
-	493.88, # Si
-	523.25 # Do
-]
 
-# Returns -1 in case of invalid note, else an integer in [0;7]
-func convertFrequencyToNote(frequency):
-	print("frq", frequency)
-	if frequency < FREQUENCIES[0]:
+
+
+# Returns -1 in case of invalid note, else an float beetween 0 and 7
+func convertFrequencyToNote(freq):
+	if freq <= 0.0 || freq >= 1000:
 		return -1
+
+	# distance en demi-tons depuis A4, ramenée pour que C=0
+	var n = 12.0 * log(freq / 440.0) / log(2.0)
+	var semitone = fmod(n + 9.0, 12.0)
+
+	# mapping des 12 demi-tons vers les 7 notes naturelles
+	const NATURAL_NOTES = [
+		0.0,  # Do
+		0.5,  # Do#
+		1.0,  # Re
+		1.5,  # Re#
+		2.0,  # Mi
+		3.0,  # Fa
+		3.5,  # Fa#
+		4.0,  # Sol
+		4.5,  # Sol#
+		5.0,  # La
+		5.5,  # La#
+		6.0   # Si
+	]
+
+	var i = int(floor(semitone)) % 12
+	var f = semitone - i
+	var i_next = (i + 1) % 12
+
+	var val = (1.0 - f) * NATURAL_NOTES[i] + f * NATURAL_NOTES[i_next]
+	return fmod(val, 7.0)
+
 	
-	for i in range(1, FREQUENCIES.size()):
-		print(i, ": ", frequency, " > ", FREQUENCIES[i])
-		if frequency < FREQUENCIES[i]:
-			return i-1
 	
-	return -1
 	
 
 func emptyBuffer():
@@ -79,6 +92,10 @@ func getFrequency():
 			samples.append(v.x)  # Utilise .y pour le canal droit
 
 		var pitch = detect_pitch(samples)
+		
+		if pitch < 0 or pitch > 1300:
+			return 0
+		
 		print("Fréquence chantée : ", pitch, " Hz")
 		return pitch
 
@@ -104,3 +121,7 @@ func detect_pitch(samples: PackedFloat32Array) -> float:
 		return -1.0
 
 	return sample_rate / best_offset
+
+
+# def getTargetPosition():
+	

@@ -44,7 +44,7 @@ func _process(_delta):
 	print("Note: ", note, " pos=[", pos.x, ",", pos.y, "]")
 	
 	# TODO: call external function (and give pos)
-
+	
 
 
 

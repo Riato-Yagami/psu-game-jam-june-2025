@@ -1,12 +1,11 @@
 [gd_scene load_steps=3 format=3 uid="uid://dmiu472ygpkbj"]
 
-[ext_resource type="Script" uid="uid://vgmjrsoa1t7x" path="res://scripts/player.gd" id="1_3vyb7"]
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_3vyb7"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_yqjtg"]
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("plate")]
+[node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_3vyb7")
-plate = NodePath("")
 
 [node name="Model" type="CSGCylinder3D" parent="."]
 transform = Transform3D(0.1, 0, 0, 0, -4.37114e-09, -0.1, 0, 0.1, -4.37114e-09, 0, -4.97935e-09, -0.113914)

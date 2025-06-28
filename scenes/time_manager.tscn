@@ -2,6 +2,5 @@
 
 [ext_resource type="Script" uid="uid://cftlcwgd373i7" path="res://scripts/timeManager.gd" id="1_ebsuv"]
 
-[node name="TimeManager" type="Node" node_paths=PackedStringArray("game")]
+[node name="TimeManager" type="Node"]
 script = ExtResource("1_ebsuv")
-game = NodePath("")

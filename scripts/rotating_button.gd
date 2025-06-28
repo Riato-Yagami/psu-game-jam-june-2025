@@ -16,5 +16,4 @@ func _process(delta: float) -> void:
 			_update_turn(axis * delta * rotating_speed)
 		
 func _update_turn(axis : float = 0):
-	#return
-	SceneManager.game.time_manager.incr_timer(axis)
+	return

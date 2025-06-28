@@ -5,6 +5,7 @@ class_name GameManager
 @export var time_manager : TimeManager
 
 var in_game : bool = false
+signal on_game_start
 
 func _process(delta: float) -> void:
 	pass
@@ -16,6 +17,7 @@ func start_game():
 	microwave.door.open()
 	microwave.panel_buttons.hide_hand()
 	in_game = true
+	emit_signal("on_game_start")
 		
 func game_over(player_win : bool = true):
 	in_game = false

@@ -3,8 +3,8 @@ extends Node
 var mic_capture: AudioEffectCapture
 var buffer = []
 
-const SAMPLE_MIN_CEIL = 0.0
-const TRIGGER_COULDOWN = 0.1
+const SAMPLE_MIN_CEIL = 20.0
+const TRIGGER_COULDOWN = 1.0
 var triggerCouldown = TRIGGER_COULDOWN
 
 func _ready():
@@ -24,7 +24,7 @@ func _ready():
 	# Récupère l'effet de capture sur le bus "Record"
 	mic_capture = AudioServer.get_bus_effect(AudioServer.get_bus_index("Record"), 0)
 	
-	
+
 func _process(_delta):
 	triggerCouldown -= _delta
 	if (triggerCouldown > 0):
@@ -44,7 +44,9 @@ func _process(_delta):
 	print("Note: ", note, " pos=[", pos.x, ",", pos.y, "]")
 	
 	# TODO: call external function (and give pos)
-	
+	# var laserContainer = SceneManager.get_node("Main/Game/LaserContainer")
+	# laserContainer.spawnLaser(0, 0, pos.x, pos.y)
+
 
 
 
@@ -85,8 +87,9 @@ func convertFrequencyToNote(freq):
 	
 
 func emptyBuffer():
-	if mic_capture and mic_capture.get_frames_available() >= 512:
-		mic_capture.get_buffer(512)
+	if mic_capture:
+		while mic_capture.get_frames_available() >= 512:
+			mic_capture.get_buffer(512)
 
 
 func getFrequency():
@@ -98,34 +101,39 @@ func getFrequency():
 
 		var pitch = detect_pitch(samples)
 		
+		print("Fréquence chantée : ", pitch, " Hz")
 		if pitch < 0 or pitch > 1300:
 			return 0
 		
-		print("Fréquence chantée : ", pitch, " Hz")
 		return pitch
 
 	return 0
 
 func detect_pitch(samples: PackedFloat32Array) -> float:
-	# Algorithme de détection très simple (AutoCorrelation)
 	var sample_rate = 44100
 	var max_lag = 1024
 	var best_offset = 0
-	var best_correlation = SAMPLE_MIN_CEIL
+	var best_correlation = 0.0
 
-	for lag in range(20, max_lag): # ignore les très basses fréquences
-		var sum = 0.0
+	# Calcul de l'énergie totale
+	var energy = 0.0
+	for s in samples:
+		energy += s * s
+
+	for lag in range(20, max_lag):
+		var corr = 0.0
 		for i in range(samples.size() - lag):
-			sum += samples[i] * samples[i + lag]
-		
-		if sum > best_correlation:
-			best_correlation = sum
+			corr += samples[i] * samples[i + lag]
+		# Normalisation par énergie
+		corr /= energy
+		if corr > best_correlation:
+			best_correlation = corr
 			best_offset = lag
 
 	if best_offset == 0:
 		return -1.0
-
 	return sample_rate / best_offset
+
 
 
 func getTargetPosition(note):

@@ -2,11 +2,11 @@
 
 [ext_resource type="Script" uid="uid://cvm010pisha4a" path="res://scripts/microwave.gd" id="1_7nepw"]
 [ext_resource type="PackedScene" uid="uid://di75s73a4mdmn" path="res://scenes/plate.tscn" id="2_bf2ql"]
-[ext_resource type="Resource" path="res://resources/exterior-dimensions.tres" id="2_ujawk"]
+[ext_resource type="Resource" uid="uid://c5x1xdyuvrja7" path="res://resources/exterior-dimensions.tres" id="2_ujawk"]
 [ext_resource type="PackedScene" uid="uid://c58qpdpnj1m0m" path="res://scenes/door.tscn" id="3_fjhug"]
 [ext_resource type="Texture2D" uid="uid://bhapxglrlkc0j" path="res://sprites/microwave/back.png" id="3_s8jgt"]
 [ext_resource type="Texture2D" uid="uid://d2t4w8qsq3ot6" path="res://sprites/microwave/left.png" id="4_fjhug"]
-[ext_resource type="PackedScene" uid="uid://drvucuenjyus5" path="res://scenes/time_pannel.tscn" id="5_iwsb8"]
+[ext_resource type="PackedScene" uid="uid://0hjdy6wkx2oo" path="res://scenes/control_panel.tscn" id="5_iwsb8"]
 [ext_resource type="Texture2D" uid="uid://6qfjycdnd65f" path="res://sprites/microwave/right.png" id="5_ujawk"]
 [ext_resource type="Texture2D" uid="uid://cpnytfmq70p5w" path="res://sprites/microwave/bottom.png" id="6_iwsb8"]
 [ext_resource type="Texture2D" uid="uid://bvvrexuvoddyb" path="res://sprites/microwave/top.png" id="7_upun8"]

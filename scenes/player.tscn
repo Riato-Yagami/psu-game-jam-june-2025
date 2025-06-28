@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cynk8q12exnym" path="res://Models/PastaBox.glb" id="2_g2els"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_yqjtg"]
+height = 3.0
 
 [sub_resource type="Animation" id="Animation_g2els"]
 resource_name = "Death"
@@ -61,6 +62,34 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector3(0, 3.14159, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_tuyoq"]
+resource_name = "Jump"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PastaBoxParent:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.633333, 0.833333, 1.33333),
+"transitions": PackedFloat32Array(1, 1, 0.31864, 2.92817, 0.707106),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, -0.05, 0), Vector3(0, 0.3, 0), Vector3(0, 0.27, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PastaBoxParent:scale")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.433333, 1.33333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(1, 1, 1), Vector3(1.1, 0.8, 1.1), Vector3(0.9, 1.1, 0.9), Vector3(1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_dqkch"]
@@ -133,34 +162,6 @@ tracks/1/keys = {
 "values": [Vector3(-0.10472, 3.14159, 0), Vector3(-0.20944, 3.14159, 0), Vector3(-0.10472, 3.14159, 0), Vector3(-0.20944, 3.14159, 0), Vector3(-0.10472, 3.14159, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_tuyoq"]
-resource_name = "Jump"
-length = 1.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("PastaBoxParent:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.633333, 0.833333, 1.33333),
-"transitions": PackedFloat32Array(1, 1, 0.31864, 2.92817, 0.707106),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, -0.05, 0), Vector3(0, 0.3, 0), Vector3(0, 0.27, 0), Vector3(0, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("PastaBoxParent:scale")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.433333, 1.33333),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(1, 1, 1), Vector3(1.1, 0.8, 1.1), Vector3(0.9, 1.1, 0.9), Vector3(1, 1, 1)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tuyoq"]
 _data = {
 &"Death": SubResource("Animation_g2els"),
@@ -171,11 +172,12 @@ _data = {
 }
 
 [node name="Player" type="CharacterBody3D"]
+collision_layer = 2
 script = ExtResource("1_3vyb7")
 runThreshold = 0.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(0.1, 0, 0, 0, -4.37114e-09, -0.1, 0, 0.1, -4.37114e-09, 0, -5.12378e-09, -0.117218)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.0317383, -0.117218)
 shape = SubResource("CapsuleShape3D_yqjtg")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

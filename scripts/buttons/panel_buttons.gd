@@ -3,7 +3,7 @@ class_name PanelButtons
 
 @export var buttons : Array[PanelButton]
 @export var time_button : RotatingButton
-
+@export var wave_button : WaveButton
 #var button_id : int = 0
 var current_button_id = 0
 
@@ -11,6 +11,7 @@ func _ready() -> void:
 	select_button(current_button_id)
 	
 func select_button(id : int) -> void :
+	wave_button.un_select()
 	buttons[current_button_id].un_select()
 	buttons[id].select()
 	current_button_id = id
@@ -20,6 +21,7 @@ func press_button() -> void :
 	
 func hide_hand() -> void :
 	buttons[current_button_id].un_select()
+	wave_button.select()
 	
 func _process(delta: float) -> void:
 	if(!SceneManager.game.in_game):

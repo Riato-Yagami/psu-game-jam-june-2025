@@ -1,11 +1,11 @@
 [gd_scene load_steps=8 format=3 uid="uid://c5swjwxtp04eg"]
 
 [ext_resource type="Texture2D" uid="uid://dj2gnbaep5uq1" path="res://sprites/microwave/control-panel.png" id="1_2wdba"]
-[ext_resource type="Script" uid="uid://bhenpk0xc5wcj" path="res://scripts/panel_buttons.gd" id="2_mmo4y"]
-[ext_resource type="Script" uid="uid://qghvv8dxsmlh" path="res://scripts/time_button.gd" id="3_abc65"]
+[ext_resource type="Script" uid="uid://bhenpk0xc5wcj" path="res://scripts/buttons/panel_buttons.gd" id="2_mmo4y"]
+[ext_resource type="Script" uid="uid://qghvv8dxsmlh" path="res://scripts/buttons/time_button.gd" id="3_abc65"]
 [ext_resource type="Texture2D" uid="uid://6vne2f51qpb5" path="res://sprites/microwave/buttons/round-button.png" id="4_14gr3"]
 [ext_resource type="Texture2D" uid="uid://b6slr5m618gjv" path="res://sprites/hand/point.png" id="5_urlgf"]
-[ext_resource type="Script" path="res://scripts/open_button.gd" id="6_b7v3f"]
+[ext_resource type="Script" uid="uid://cvpvk5qk3cubx" path="res://scripts/buttons/open_button.gd" id="6_b7v3f"]
 [ext_resource type="Texture2D" uid="uid://onb06cbcvg2" path="res://sprites/microwave/buttons/open-button.png" id="7_uvcdp"]
 
 [node name="ControlPanel" type="Sprite3D"]

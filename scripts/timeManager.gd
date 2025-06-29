@@ -5,7 +5,8 @@ var timeButton : RotatingButton
 @export var game : GameManager
 
 var time : float = 0
-var timer = 0.1 * 60
+var timer = 0
+var default_time = 30
 
 var MAX = 30 * 60
 var MIN = 0
@@ -14,6 +15,10 @@ func _ready() -> void:
 	timeButton = game.microwave.panel_buttons.time_button
 	update_timer_button()
 	#timeButton.angle = timer
+	
+func reset_timer():
+	timer = default_time
+	update_timer_button()
 	
 func _process(delta: float) -> void:
 	if(game.in_game): update_timer(delta)

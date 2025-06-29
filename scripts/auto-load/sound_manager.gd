@@ -26,6 +26,7 @@ func _ready():
 	
 func play(clip_name,db = 1, count = 1, time = 0):
 	var s : Sound = sound_r.instantiate()
+	if(!sounds_node): return
 	sounds_node.add_child(s)
 	
 	var clip = sound_path + clip_name + ".wav"

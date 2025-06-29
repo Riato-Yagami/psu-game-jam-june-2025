@@ -5,7 +5,7 @@ class_name PanelButtons
 @export var time_button : RotatingButton
 @export var wave_button : WaveButton
 #var button_id : int = 0
-var current_button_id = 0
+var current_button_id = 1
 
 func _ready() -> void:
 	select_button(current_button_id)

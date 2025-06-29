@@ -11,6 +11,7 @@ var in_game : bool = false
 signal on_game_start
 
 func _ready() -> void:
+	time_manager.reset_timer()
 	player = microwave.plate.player
 	
 func _process(delta: float) -> void:
@@ -29,10 +30,11 @@ func start_game():
 	connect_audio()
 		
 func game_over(player_win : bool = true):
+	time_manager.reset_timer()
 	in_game = false
 	microwave.door.post_it_notes.get_node("PastaWin").visible = player_win
-	var soundsNode = SceneManager.main.get_node("/Audio/Sounds")
-	#soundsNode.queue_free()
+	var soundsNode = SceneManager.main.get_node("Audio/Sounds")
+	soundsNode.queue_free()
 	microwave.door.post_it_notes.get_node("Tutorial").visible = false
 	microwave.door.post_it_notes.get_node("PastaWin").visible = player_win
 	microwave.door.post_it_notes.get_node("CookerWin").visible = !player_win

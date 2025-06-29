@@ -11,7 +11,7 @@ var direction : Vector2
 #@export var active : bool
 
 @export var jumpWindupDuration : float = 0.01
-@export var jumpInvincibleDuration : float = .6
+@export var jumpInvincibleDuration : float = .7
 @export var jumpRecoveryDuration : float = .05
 @export var jumpCooldownDuration : float = 0.25
 

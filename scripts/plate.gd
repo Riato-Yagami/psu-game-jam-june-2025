@@ -61,7 +61,7 @@ func _process(delta: float) -> void:
 	if (transition_timer > 0):
 		transition_timer -= delta
 		if (transition_timer <= 0):
-			_set_phase(rng.randi_range(0, phase_options_count - 1))
+			_set_phase(rng.randi_range(1, phase_options_count - 1))
 	
 	#return
 	rotate(Vector3.UP,rotation_speed * delta)

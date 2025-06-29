@@ -5,7 +5,7 @@ class_name Laser
 @export var SPEED = 1
 
 @export var raycast : RayCast3D
-var pshhCooldown : float = 1
+var pshhCooldown : float = 0.3
 var pshhTimer : float = 0
 
 

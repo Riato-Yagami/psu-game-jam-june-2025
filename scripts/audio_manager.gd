@@ -1,50 +1,31 @@
 extends Node
 
-var tcp := StreamPeerTCP.new()
-var is_connected := false
-var time_passed := 0.0
+var capture : AudioEffectCapture
+var mic_bus_index : int
 
 func _ready():
-	var is_windows := OS.get_name() == "Windows"
-	var script := ProjectSettings.globalize_path(
-		"res://launch.bat" if is_windows else "res://launch.sh"
-	)
-	var interpreter := "cmd" if is_windows else "bash"
-	var args := ["/C", script] if is_windows else [script]
+	# Récupère l'index du bus "Record"
+	mic_bus_index = AudioServer.get_bus_index("Record")
+	
 
-	var result := OS.create_process(interpreter, args)
-	if result == -1:
-		push_error("Échec du lancement du serveur Python.")
+	# Vérifie que le bus contient un AudioEffectCapture
+	var effect = AudioServer.get_bus_effect(mic_bus_index, 0)
+	if effect is AudioEffectCapture:
+		capture = effect
 	else:
-		print("Serveur Python lancé.")
-
-
+		push_error("Aucun AudioEffectCapture trouvé sur le bus 'Record'.")
 
 func _process(delta):
-	tcp.poll()
+	if capture and capture.can_get_buffer(512):
+		var samples := capture.get_buffer(512)
+		var amplitude := _calculate_amplitude(samples)
+		print("Amplitude du micro: ", amplitude)
 
-	if not is_connected and tcp.get_status() == StreamPeerTCP.STATUS_CONNECTED:
-		is_connected = true
-		print("Connecté au serveur Python.")
+func _calculate_amplitude(samples: PackedVector2Array) -> float:
+	if samples.is_empty():
+		return 0.0
 
-	if is_connected:
-		time_passed += delta
-		if time_passed >= 1.0:
-			time_passed = 0.0
-			var message = "ping\n"
-			var err = tcp.put_data(message.to_utf8_buffer())
-			if err == OK:
-				print("Message envoyé :", message.strip_edges())
-			else:
-				print("Erreur d'envoi :", err)
-
-		if tcp.get_available_bytes() > 0:
-			var response = tcp.get_utf8_string(tcp.get_available_bytes())
-			var note = float(response.strip_edges())
-			setLaserAngle(note)
-
-
-func setLaserAngle(note):
-	var laserContainer = SceneManager.get_node("Main/Game/LaserContainer")
-	laserContainer.laser.setAngle(note)
-	
+	var sum = 0.0
+	for s in samples:
+		sum += abs(s.x)  # .x = canal gauche ; .y = canal droit (si stéréo)
+	return sum / samples.size()

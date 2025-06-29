@@ -41,12 +41,7 @@ func game_over(player_win : bool = true):
 	microwave.panel_buttons.select_button(microwave.panel_buttons.current_button_id)
 	
 func connect_audio():
-	var err = tcp.connect_to_host("127.0.0.1", 12345)
-	if err != OK:
-		print("Erreur de connexion :", err)
-	else:
-		print("Connexion demandée…")
-
+	return
 
 
 func _input(event):

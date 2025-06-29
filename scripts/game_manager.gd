@@ -27,7 +27,7 @@ func start_game():
 	in_game = true
 	SoundManager.play("beep")
 	emit_signal("on_game_start")
-	connect_audio()
+	#connect_audio()
 		
 func game_over(player_win : bool = true):
 	time_manager.reset_timer()
@@ -41,15 +41,13 @@ func game_over(player_win : bool = true):
 	microwave.door.close()
 	$CameraNode.set_camera_menu()
 	microwave.panel_buttons.select_button(microwave.panel_buttons.current_button_id)
-	
-func connect_audio():
-	var err = tcp.connect_to_host("127.0.0.1", 12345)
-	if err != OK:
-		print("Erreur de connexion :", err)
-	else:
-		print("Connexion demandée…")
 
-
+#func connect_audio():
+	#var err = tcp.connect_to_host("127.0.0.1", 12345)
+	#if err != OK:
+		#print("Erreur de connexion :", err)
+	#else:
+		#print("Connexion demandée…")
 
 func _input(event):
 	if event is InputEventMouseButton:

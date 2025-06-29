@@ -10,10 +10,10 @@ var direction : Vector2
 @export var maxHealth : float = 10
 #@export var active : bool
 
-@export var jumpWindupDuration : float = .1
-@export var jumpInvincibleDuration : float = 1
-@export var jumpRecoveryDuration : float = .2
-@export var jumpCooldownDuration : float = 1
+@export var jumpWindupDuration : float = 0.01
+@export var jumpInvincibleDuration : float = .6
+@export var jumpRecoveryDuration : float = .05
+@export var jumpCooldownDuration : float = 0.25
 
 @export var inJump : bool
 
@@ -64,9 +64,10 @@ func _physics_process(delta: float) -> void:
 	var movementForce = Vector3(rotated_dir.x,0,rotated_dir.y) * speed
 	position += movementForce * delta
 	#$AnimationTree.set("parameters/conditions/idleToRun", movementForce.length() > runThreshold);
-	if (movementForce.length() > runThreshold && !inJump):
-		footStep(delta)
-		$AnimationPlayer.play("Run")
+	if (movementForce.length() > runThreshold):
+		if (!inJump):
+			footStep(delta)
+			$AnimationPlayer.play("Run")
 		var target_angle = atan2(movementForce.x, movementForce.z)
 		rotation.y = target_angle
 		#self.rotation_degrees = Vector3(self.rotation_degrees.x, self.rotation_degrees.y - angle, self.rotation_degrees.z)
@@ -80,6 +81,7 @@ func _physics_process(delta: float) -> void:
 		jumpWindupTimer -= delta
 		if (jumpWindupTimer <= 0):
 			jumpInvincibleTimer = jumpInvincibleDuration
+			SoundManager.play("jump2")
 			$CollisionShape3D.disabled = true
 	else: if (jumpInvincibleTimer > 0):
 		jumpInvincibleTimer -= delta
@@ -110,6 +112,7 @@ func _recieve_damage(value: float) -> void:
 
 func _try_jump():
 	if (!inJump && jumpCooldownTimer <= 0):
+		$AnimationPlayer.play("Idle")
 		$AnimationPlayer.play("Jump")
 		print("jump")
 		inJump = true

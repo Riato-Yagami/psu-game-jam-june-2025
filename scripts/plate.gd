@@ -8,7 +8,7 @@ class_name Plate
 
 @export var phase_target_speeds : Array[float] = []
 @export var phase_durations : Array[float] = []
-@export var phase_audio_strings : Array[String] = []
+@export var phase_audio_streams : Array[AudioStream] = []
 
 var phase_options_count : int
 var duration_timer : float
@@ -25,11 +25,15 @@ var radius : float :
 
 func _ready():
 	SceneManager.game.on_game_start.connect(_set_phase_start)
+	SceneManager.game.on_game_over.connect(_stop_music)
 	phase_options_count = phase_target_speeds.size()
 	rng.randomize()  # Seeds the generator with a random value
 	
 func _set_phase_start():
 	_set_phase(0)
+	
+func _stop_music():
+	$AudioStreamPlayer.stop()
 
 func _set_phase(index: int):
 	duration_timer = phase_durations[index] - 0.5
@@ -37,7 +41,8 @@ func _set_phase(index: int):
 		target_rotation_speed = - phase_target_speeds[index]
 	else:
 		target_rotation_speed = phase_target_speeds[index]
-	SoundManager.play(phase_audio_strings[index], 1, 1, duration_timer)
+	$AudioStreamPlayer.stream = phase_audio_streams[index]
+	$AudioStreamPlayer.play()
 
 func _process(delta: float) -> void:
 	if (!SceneManager.game.in_game):
@@ -56,6 +61,7 @@ func _process(delta: float) -> void:
 		duration_timer -= delta
 		if (duration_timer <= 0):
 			transition_timer = transition_duration
+			$AudioStreamPlayer.stop()
 			SoundManager.play("rewind", 1, 1, 0)
 			
 	if (transition_timer > 0):

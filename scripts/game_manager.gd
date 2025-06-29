@@ -30,6 +30,8 @@ func start_game():
 		
 func game_over(player_win : bool = true):
 	in_game = false
+	var soundsNode = SceneManager.main.get_node("/Audio/Sounds")
+	#soundsNode.queue_free()
 	microwave.door.post_it_notes.get_node("PlayerWin").visible = player_win
 	microwave.door.post_it_notes.get_node("CookerWin").visible = !player_win
 	microwave.door.close()

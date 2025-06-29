@@ -3,6 +3,7 @@ class_name Laser
 
 @export var POS_Z = 0
 @export var SPEED = 1
+@export var DRAG = .8
 
 @export var raycast : RayCast3D
 var pshhCooldown : float = 0.3
@@ -32,7 +33,7 @@ func scrollWayDown():
 
 func _process(delta: float) -> void:
 	rotation.y += scrollWay * delta
-	
+	scrollWay *= DRAG
 	if(raycast.is_colliding() and SceneManager.game.in_game):
 		pshh(delta)
 		SceneManager.game.player._recieve_damage(delta)

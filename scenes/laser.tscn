@@ -13,7 +13,7 @@ script = ExtResource("1_xmihv")
 raycast = NodePath("Points/Point1/RayCast3D")
 
 [node name="Points" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.47, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
 
 [node name="Point2" type="Node3D" parent="Points"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6, 0, 0)
@@ -41,7 +41,7 @@ shaded = true
 texture = ExtResource("2_a7dhc")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.219982, 0.975504, 0, -0.975504, 0.219982, 0, 0.514808, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
 material_overlay = ExtResource("4_412cd")
 transparency = 1.0
 mesh = SubResource("PlaneMesh_jjj73")

@@ -10,10 +10,10 @@ var direction : Vector2
 @export var maxHealth : float = 10
 #@export var active : bool
 
-@export var jumpWindupDuration : float = .1
-@export var jumpInvincibleDuration : float = .7
-@export var jumpRecoveryDuration : float = .2
-@export var jumpCooldownDuration : float = 0.5
+@export var jumpWindupDuration : float = 0.01
+@export var jumpInvincibleDuration : float = .6
+@export var jumpRecoveryDuration : float = .05
+@export var jumpCooldownDuration : float = 0.25
 
 @export var inJump : bool
 
@@ -112,6 +112,7 @@ func _recieve_damage(value: float) -> void:
 
 func _try_jump():
 	if (!inJump && jumpCooldownTimer <= 0):
+		$AnimationPlayer.play("Idle")
 		$AnimationPlayer.play("Jump")
 		print("jump")
 		inJump = true

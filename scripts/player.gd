@@ -22,7 +22,7 @@ var jumpInvincibleTimer: float
 var jumpRecoveryTimer: float
 var jumpCooldownTimer: float
 
-var walkCoolDown = 0.25
+var walkCoolDown = 0.3
 var walkCoolDownTimer = 0
 
 @export var maxSmokeParticles : int = 8

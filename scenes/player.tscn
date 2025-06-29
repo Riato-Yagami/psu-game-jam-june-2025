@@ -218,7 +218,7 @@ material = SubResource("StandardMaterial3D_dqkch")
 [node name="Player" type="CharacterBody3D"]
 collision_layer = 2
 script = ExtResource("1_3vyb7")
-speed = 1.3
+speed = 1.8
 runThreshold = 0.0
 maxHealth = 4.0
 jumpWindupDuration = 0.05

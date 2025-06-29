@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://c8eyx0mco4tw" path="res://scenes/microwave.tscn" id="1_uwrxv"]
 [ext_resource type="PackedScene" uid="uid://dtyifegf6gr8r" path="res://scenes/laserContainer.tscn" id="2_yqjtg"]
 [ext_resource type="Texture2D" uid="uid://dgmuhoswmgt0y" path="res://sprites/table.png" id="4_lbhrr"]
-[ext_resource type="Script" path="res://scenes/cameraManager.gd" id="5_iywne"]
+[ext_resource type="Script" uid="uid://dyt8gmgp6yx50" path="res://scenes/cameraManager.gd" id="5_iywne"]
 
 [sub_resource type="Environment" id="Environment_lbhrr"]
 background_energy_multiplier = 1.09

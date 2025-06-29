@@ -9,6 +9,7 @@ var player : Player
 
 var in_game : bool = false
 signal on_game_start
+signal on_game_over
 
 func _ready() -> void:
 	time_manager.reset_timer()
@@ -30,6 +31,7 @@ func start_game():
 	#connect_audio()
 		
 func game_over(player_win : bool = true):
+	emit_signal("on_game_over")
 	time_manager.reset_timer()
 	in_game = false
 	microwave.door.post_it_notes.get_node("PastaWin").visible = player_win

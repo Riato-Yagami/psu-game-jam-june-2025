@@ -8,9 +8,9 @@
 [node name="Plate" type="Node3D" node_paths=PackedStringArray("player")]
 script = ExtResource("2_qy4xk")
 rotation_speed_change = 0.3
-phase_target_speeds = Array[float]([0.5, 0.75, 1.0])
-phase_durations = Array[float]([6.0, 5.0, 4.0])
-phase_audio_strings = Array[String](["", "", ""])
+phase_target_speeds = Array[float]([0.3, 0.5, 1.0, 1.25, 0.75])
+phase_durations = Array[float]([16.0, 12.0, 10.0, 10.0, 12.0])
+phase_audio_strings = Array[String](["Music/Microwave0", "Music/Microwave1", "Music/Microwave2", "Music/Microwave3", "Music/Microwave4"])
 plate_dimensions = ExtResource("2_e0qvw")
 player = NodePath("Player")
 

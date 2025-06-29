@@ -39,7 +39,7 @@ func _process(_delta):
 func setMicroValue(amplitude):
 	if amplitude <= 0:
 		return
-	
+	amplitude = amplitude * 4
 	var laserContainer = get_node("../Game/LaserContainer")
 	var laser = laserContainer.laser
 	laser.setAngle(amplitude * PI)

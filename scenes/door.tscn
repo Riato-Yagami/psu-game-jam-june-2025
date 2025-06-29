@@ -1,11 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://c58qpdpnj1m0m"]
+[gd_scene load_steps=14 format=3 uid="uid://c58qpdpnj1m0m"]
 
 [ext_resource type="Script" uid="uid://hhso2n2mu1av" path="res://scripts/door.gd" id="1_uvdjg"]
 [ext_resource type="Texture2D" uid="uid://canq18luyjsdp" path="res://sprites/microwave/door-face.png" id="2_83dcw"]
 [ext_resource type="Script" uid="uid://dfpibngmxitta" path="res://scripts/posit_it_notes.gd" id="3_83dcw"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_uvdjg"]
-size = Vector2(100, 100)
+[ext_resource type="Texture2D" uid="uid://bc4vj47bn1u7e" path="res://sprites/postItNotes/win.png" id="4_18pbm"]
+[ext_resource type="Texture2D" uid="uid://r7fbfgn37d8" path="res://sprites/postItNotes/pasta.png" id="4_la1wf"]
+[ext_resource type="Texture2D" uid="uid://dsfkssr02uuin" path="res://sprites/postItNotes/versus.png" id="6_41c0y"]
+[ext_resource type="Texture2D" uid="uid://dhhwnxkvinuhw" path="res://sprites/postItNotes/cooker.png" id="6_q5w8r"]
+[ext_resource type="Texture2D" uid="uid://cjg8kj57pwifx" path="res://sprites/postItNotes/controls.png" id="7_j2w5t"]
+[ext_resource type="Texture2D" uid="uid://dqlbl3sqh7w74" path="res://sprites/postItNotes/stick.png" id="8_ykb3b"]
+[ext_resource type="Texture2D" uid="uid://cgvh3qdyc85gl" path="res://sprites/postItNotes/a.png" id="9_ali40"]
+[ext_resource type="Texture2D" uid="uid://bqqdjb6fdmkl3" path="res://sprites/postItNotes/mic.png" id="10_dmmdo"]
+[ext_resource type="Texture2D" uid="uid://b5moked5263ga" path="res://sprites/postItNotes/mouse_wheel.png" id="11_8m42n"]
+[ext_resource type="Texture2D" uid="uid://uyg2m6ktjv0y" path="res://sprites/postItNotes/or.png" id="12_8x4x6"]
 
 [node name="Door" type="Node3D" node_paths=PackedStringArray("anchor", "post_it_notes")]
 script = ExtResource("1_uvdjg")
@@ -21,16 +28,89 @@ shaded = true
 texture = ExtResource("2_83dcw")
 
 [node name="PositItNotes" type="Node3D" parent="Anchor/Face"]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.45)
 script = ExtResource("3_83dcw")
 
-[node name="PlayerWin" type="Sprite3D" parent="Anchor/Face/PositItNotes"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
-visible = false
-sorting_offset = 10.0
-texture = SubResource("PlaceholderTexture2D_uvdjg")
+[node name="Tutorial" type="Node3D" parent="Anchor/Face/PositItNotes"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.0847301, 0.366615, 0)
 
-[node name="CookerWin" type="Sprite3D" parent="Anchor/Face/PositItNotes"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+[node name="Versus" type="Node3D" parent="Anchor/Face/PositItNotes/Tutorial"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.426655, 0.82442, 0)
+
+[node name="Pasta" type="Sprite3D" parent="Anchor/Face/PositItNotes/Tutorial/Versus"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.04201, 0.59597, 0)
+shaded = true
+texture = ExtResource("4_la1wf")
+
+[node name="Cooker" type="Sprite3D" parent="Anchor/Face/PositItNotes/Tutorial/Versus"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.92518, 0.59597, 0)
+shaded = true
+texture = ExtResource("6_q5w8r")
+
+[node name="Versus" type="Sprite3D" parent="Anchor/Face/PositItNotes/Tutorial/Versus"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.416792, 0.59597, 0)
+shaded = true
+texture = ExtResource("6_41c0y")
+
+[node name="Controls" type="Node3D" parent="Anchor/Face/PositItNotes/Tutorial"]
+
+[node name="Controls" type="Sprite3D" parent="Anchor/Face/PositItNotes/Tutorial/Controls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.57034, -0.536359, 0)
+shaded = true
+texture = ExtResource("7_j2w5t")
+
+[node name="Pasta" type="Node3D" parent="Anchor/Face/PositItNotes/Tutorial/Controls"]
+
+[node name="Stick" type="Sprite3D" parent="Anchor/Face/PositItNotes/Tutorial/Controls/Pasta"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.992524, -0.536359, 0)
+shaded = true
+texture = ExtResource("8_ykb3b")
+
+[node name="A" type="Sprite3D" parent="Anchor/Face/PositItNotes/Tutorial/Controls/Pasta"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.992524, -1.79779, 0)
+shaded = true
+texture = ExtResource("9_ali40")
+
+[node name="Cooker" type="Node3D" parent="Anchor/Face/PositItNotes/Tutorial/Controls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.64964, 0, 0)
+
+[node name="Mic" type="Sprite3D" parent="Anchor/Face/PositItNotes/Tutorial/Controls/Cooker"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.992525, -0.446955, 0)
+shaded = true
+texture = ExtResource("10_dmmdo")
+
+[node name="MouseWheel" type="Sprite3D" parent="Anchor/Face/PositItNotes/Tutorial/Controls/Cooker"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0199928, -1.79779, 0)
+shaded = true
+texture = ExtResource("11_8m42n")
+
+[node name="or" type="Sprite3D" parent="Anchor/Face/PositItNotes/Tutorial/Controls/Cooker"]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, -1.65939, -1.97874, 0)
+shaded = true
+texture = ExtResource("12_8x4x6")
+
+[node name="PastaWin" type="Node3D" parent="Anchor/Face/PositItNotes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.785, 0, 0)
 visible = false
-sorting_offset = 10.0
-texture = SubResource("PlaceholderTexture2D_uvdjg")
+
+[node name="Win" type="Sprite3D" parent="Anchor/Face/PositItNotes/PastaWin"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.61189, 0, 0)
+shaded = true
+texture = ExtResource("4_18pbm")
+
+[node name="Pasta" type="Sprite3D" parent="Anchor/Face/PositItNotes/PastaWin"]
+shaded = true
+texture = ExtResource("4_la1wf")
+
+[node name="CookerWin" type="Node3D" parent="Anchor/Face/PositItNotes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.785, 0, 0)
+visible = false
+
+[node name="Win" type="Sprite3D" parent="Anchor/Face/PositItNotes/CookerWin"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.61189, 0, 0)
+shaded = true
+texture = ExtResource("4_18pbm")
+
+[node name="Pasta" type="Sprite3D" parent="Anchor/Face/PositItNotes/CookerWin"]
+shaded = true
+texture = ExtResource("6_q5w8r")

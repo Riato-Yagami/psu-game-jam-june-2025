@@ -29,7 +29,8 @@ func start_game():
 		
 func game_over(player_win : bool = true):
 	in_game = false
-	microwave.door.post_it_notes.get_node("PlayerWin").visible = player_win
+	microwave.door.post_it_notes.get_node("Tutorial").visible = false
+	microwave.door.post_it_notes.get_node("PastaWin").visible = player_win
 	microwave.door.post_it_notes.get_node("CookerWin").visible = !player_win
 	microwave.door.close()
 	microwave.panel_buttons.select_button(microwave.panel_buttons.current_button_id)

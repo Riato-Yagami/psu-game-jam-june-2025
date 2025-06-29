@@ -1,0 +1,10 @@
+1. 1 vs 1
+a. Pasta vs cooker
+2. a. Pasta Move / Jump control
+b. Cooker move -> voice + wheel
+b. Pasta don't get cooked !
+
+
+
+Cooker win
+Pasta Win

@@ -26,6 +26,7 @@ func _process(delta: float) -> void:
 		if (close_timer <= 0):
 			anchor.rotation.y = 0
 			SoundManager.play("door_close")
+			SceneManager.game.microwave.panel_buttons.select_button(SceneManager.game.microwave.panel_buttons.current_button_id)
 	
 func open() -> void:
 	open_timer = open_close_duration

@@ -2,6 +2,7 @@ extends Node3D
 class_name PanelButton
 
 @onready var sprite : Sprite3D = $Sprite
+@onready var hand : Node3D = $Hand
 @onready var hand_sprite : Sprite3D = $Hand/Sprite
 signal input_signal
 

@@ -34,15 +34,12 @@ func game_over(player_win : bool = true):
 	emit_signal("on_game_over")
 	time_manager.reset_timer()
 	in_game = false
-	microwave.door.post_it_notes.get_node("PastaWin").visible = player_win
-	#var soundsNode = SceneManager.main.get_node("Audio/Sounds")
-	#soundsNode.queue_free()
 	microwave.door.post_it_notes.get_node("Tutorial").visible = false
 	microwave.door.post_it_notes.get_node("PastaWin").visible = player_win
 	microwave.door.post_it_notes.get_node("CookerWin").visible = !player_win
 	microwave.door.close()
 	$CameraNode.set_camera_menu()
-	microwave.panel_buttons.select_button(microwave.panel_buttons.current_button_id)
+	#microwave.panel_buttons.select_button(microwave.panel_buttons.current_button_id)
 
 #func connect_audio():
 	#var err = tcp.connect_to_host("127.0.0.1", 12345)

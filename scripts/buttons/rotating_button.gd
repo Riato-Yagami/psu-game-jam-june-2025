@@ -15,10 +15,15 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if (not hand_sprite) or hand_sprite.visible:
 		var axis : int = 1 if Input.is_action_pressed("move_right") else  (-1 if Input.is_action_pressed("move_left") else 0)
+		hand.rotation.z = sign(axis) * PI / 6
 		if(axis != 0):
 			_update_turn(axis * delta * rotating_speed)
 	if (click_sound_timer > 0):
 		click_sound_timer -= delta
-		
+
+func update_turn(axis : float = 0):
+	pass
+	
 func _update_turn(axis : float = 0):
+	update_turn(axis)
 	return

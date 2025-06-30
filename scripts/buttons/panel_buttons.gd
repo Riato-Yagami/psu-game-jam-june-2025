@@ -17,7 +17,8 @@ func select_button(id : int) -> void :
 	current_button_id = id
 
 func press_button() -> void :
-	buttons[current_button_id].press()
+	if(buttons[current_button_id].hand_sprite.visible):
+		buttons[current_button_id].press()
 	
 func hide_hand() -> void :
 	buttons[current_button_id].un_select()

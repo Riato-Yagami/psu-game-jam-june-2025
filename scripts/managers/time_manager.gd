@@ -10,7 +10,7 @@ var timer = 0
 var default_time = 30
 
 var MAX = 30 * 60
-var MIN = 0
+var MIN = 10
 
 func _ready() -> void:
 	timeButton = game.microwave.panel_buttons.time_button

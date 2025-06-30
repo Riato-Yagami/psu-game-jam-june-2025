@@ -3,8 +3,13 @@ extends Node
 var capture: AudioEffectCapture
 var mic_bus_index: int
 var mic_player: AudioStreamPlayer
+var laser : Laser
 
 func _ready():
+	# 0. Get laser
+	var laserContainer : LaserContainer = SceneManager.game.get_node("LaserContainer")
+	laser = laserContainer.laser
+
 	# 1. Prépare le bus d'enregistrement
 	mic_bus_index = AudioServer.get_bus_index("Record")
 
@@ -40,10 +45,9 @@ func setMicroValue(amplitude):
 	if amplitude <= 0:
 		return
 	amplitude = amplitude * 4
-	var laserContainer = get_node("../Game/LaserContainer")
-	var laser = laserContainer.laser
-	laser.setAngle(amplitude * PI)
-	print(amplitude * PI)
+	if(laser):
+		laser.setAngle(amplitude * PI)
+	#print(amplitude * PI)
 	
 
 func _calculate_amplitude(samples: PackedVector2Array) -> float:

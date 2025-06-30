@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://dtyifegf6gr8r"]
+
+[ext_resource type="Script" uid="uid://cgmwvf0of88qd" path="res://scripts/laser_container.gd" id="1_6g80j"]
+[ext_resource type="PackedScene" uid="uid://di8xtqma6f0jn" path="res://scenes/laser.tscn" id="2_6227g"]
+
+[node name="LaserContainer" type="Node3D" node_paths=PackedStringArray("laser")]
+script = ExtResource("1_6g80j")
+laser = NodePath("Laser")
+
+[node name="Laser" parent="." instance=ExtResource("2_6227g")]

@@ -114,6 +114,6 @@ func _try_jump():
 	if (!inJump && jumpCooldownTimer <= 0):
 		$AnimationPlayer.play("Idle")
 		$AnimationPlayer.play("Jump")
-		print("jump")
+		#print("jump")
 		inJump = true
 		jumpWindupTimer = jumpWindupDuration

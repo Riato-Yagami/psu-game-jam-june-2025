@@ -5,3 +5,4 @@ class_name Microwave
 @export var door : Door
 @export var panel_buttons : PanelButtons
 @export var plate : Plate
+@export var level_timer : LevelTimer

@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://cjjw1orhs8sw6"]
+
+[ext_resource type="Script" uid="uid://daaeqk5ela4xk" path="res://scripts/timer/level_timer.gd" id="1_srplv"]
+[ext_resource type="FontFile" uid="uid://cajukgo0pqdd0" path="res://font/DS-DIGIB.TTF" id="2_5lxq6"]
+[ext_resource type="Texture2D" uid="uid://bv85lxwk6dar5" path="res://sprites/timer.png" id="2_g5y8c"]
+
+[node name="LevelTimer" type="Node3D" node_paths=PackedStringArray("hms_label")]
+script = ExtResource("1_srplv")
+hms_label = NodePath("Label3D")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+shaded = true
+alpha_cut = 1
+texture = ExtResource("2_g5y8c")
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0366988, -0.01)
+modulate = Color(0.164706, 0.807843, 0, 1)
+text = "33:10"
+font = ExtResource("2_5lxq6")
+font_size = 60

@@ -3,6 +3,7 @@ class_name TimeManager
 
 var timeButton : RotatingButton
 @export var game : GameManager
+var level_timer : LevelTimer
 
 var time : float = 0
 var timer = 0
@@ -13,6 +14,7 @@ var MIN = 0
 
 func _ready() -> void:
 	timeButton = game.microwave.panel_buttons.time_button
+	level_timer = game.microwave.level_timer
 	update_timer_button()
 	#timeButton.angle = timer
 	
@@ -27,13 +29,14 @@ func update_timer(delta: float) -> void:
 	timer -= delta
 	
 	if(timer < 0):
+		level_timer.pause()
 		game.game_over(true)
 		
 	update_timer_button()
 	
 func start_timer():
 	timeButton.angle = timer
-	pass
+	level_timer.start(timer)
 	
 func update_timer_button():
 	#timeButton.angle = timer * (60/35)

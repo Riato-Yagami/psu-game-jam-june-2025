@@ -15,7 +15,7 @@ flip_h = true
 texture = ExtResource("1_fab17")
 
 [node name="Buttons" type="Node3D" parent="." node_paths=PackedStringArray("buttons", "time_button")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.105)
 script = ExtResource("2_5q0ia")
 buttons = [NodePath("TimeButton"), NodePath("OpenButton")]
 time_button = NodePath("TimeButton")
@@ -28,6 +28,7 @@ metadata/_custom_type_script = "uid://nsc8hlt4v7fj"
 [node name="Sprite" type="Sprite3D" parent="Buttons/TimeButton"]
 sorting_offset = 5.0
 shaded = true
+alpha_cut = 1
 texture = ExtResource("4_0etsd")
 
 [node name="Hand" type="Node3D" parent="Buttons/TimeButton"]
@@ -35,9 +36,10 @@ texture = ExtResource("4_0etsd")
 [node name="Sprite" type="Sprite3D" parent="Buttons/TimeButton/Hand"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5246, -1.07117, -0.0708008)
 visible = false
-sorting_offset = 10.0
+sorting_offset = 100.0
 flip_h = true
 shaded = true
+alpha_cut = 1
 texture = ExtResource("5_bsupa")
 
 [node name="OpenButton" type="Node3D" parent="Buttons"]
@@ -48,6 +50,7 @@ metadata/_custom_type_script = "uid://cvpvk5qk3cubx"
 [node name="Sprite" type="Sprite3D" parent="Buttons/OpenButton"]
 sorting_offset = 5.0
 shaded = true
+alpha_cut = 1
 texture = ExtResource("3_5q0ia")
 
 [node name="Hand" type="Node3D" parent="Buttons/OpenButton"]
@@ -55,9 +58,10 @@ texture = ExtResource("3_5q0ia")
 [node name="Sprite" type="Sprite3D" parent="Buttons/OpenButton/Hand"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5246, -1.07117, -0.0708008)
 visible = false
-sorting_offset = 10.0
+sorting_offset = 100.0
 flip_h = true
 shaded = true
+alpha_cut = 1
 texture = ExtResource("5_bsupa")
 
 [node name="WaveButton" type="Node3D" parent="Buttons"]
@@ -68,6 +72,7 @@ metadata/_custom_type_script = "uid://nsc8hlt4v7fj"
 [node name="Sprite" type="Sprite3D" parent="Buttons/WaveButton"]
 sorting_offset = 5.0
 shaded = true
+alpha_cut = 1
 texture = ExtResource("4_0etsd")
 
 [node name="Hand" type="Node3D" parent="Buttons/WaveButton"]
@@ -76,7 +81,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.954055, 0)
 [node name="Sprite" type="Sprite3D" parent="Buttons/WaveButton/Hand"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5246, -1.07117, -0.0708008)
 visible = false
-sorting_offset = 10.0
+sorting_offset = 100.0
 flip_h = true
 shaded = true
+alpha_cut = 1
 texture = ExtResource("9_6ymrp")

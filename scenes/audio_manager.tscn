@@ -1,9 +1,25 @@
-[gd_scene load_steps=2 format=3 uid="uid://b38wjvim4a85l"]
+[gd_scene load_steps=5 format=3 uid="uid://b38wjvim4a85l"]
 
 [ext_resource type="Script" uid="uid://2f14srv1ljek" path="res://scripts/managers/audio_manager.gd" id="1_8qd8g"]
+[ext_resource type="Script" uid="uid://b6fa5xhp6n2vn" path="res://scripts/spectrum_analyzer.gd" id="2_liach"]
+[ext_resource type="Shader" uid="uid://bfue6m70bcppg" path="res://scenes/spectrum_analyzer.gdshader" id="3_3asnw"]
 
-[node name="AudioManager" type="Node"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_m6ggh"]
+shader = ExtResource("3_3asnw")
+shader_parameter/freq_data = PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+
+[node name="AudioManager" type="Node" node_paths=PackedStringArray("spectrum_analyzer")]
 script = ExtResource("1_8qd8g")
+spectrum_analyzer = NodePath("SpectrumAnalyzer")
 
 [node name="Input" type="AudioStreamPlayer" parent="."]
 bus = &"Record"
+
+[node name="SpectrumAnalyzer" type="Node" parent="."]
+script = ExtResource("2_liach")
+
+[node name="ColorRect" type="ColorRect" parent="SpectrumAnalyzer"]
+visible = false
+material = SubResource("ShaderMaterial_m6ggh")
+offset_right = 801.0
+offset_bottom = 386.0

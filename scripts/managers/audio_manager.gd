@@ -1,9 +1,14 @@
 extends Node
+class_name AudioManager
 
 var capture: AudioEffectCapture
 var mic_bus_index: int
 var mic_player: AudioStreamPlayer
 var laser : Laser
+var spectrum : AudioEffectSpectrumAnalyzerInstance
+var samples : PackedVector2Array
+var max_amplitude = 4
+@export var spectrum_analyzer : SpectrumAnalyzer
 
 func _ready():
 	# 0. Get laser
@@ -14,13 +19,8 @@ func _ready():
 	mic_bus_index = AudioServer.get_bus_index("Record")
 
 	# 2. Récupère l'effet AudioEffectCapture
-	var effect = AudioServer.get_bus_effect(mic_bus_index, 0)
-	if effect is AudioEffectCapture:
-		capture = effect
-	else:
-		push_error("AudioEffectCapture non trouvé sur le bus 'Record'.")
-		return
-
+	spectrum = AudioServer.get_bus_effect_instance(mic_bus_index, 0)
+	
 	# 3. Crée un AudioStreamPlayer avec AudioStreamMicrophone
 	mic_player = AudioStreamPlayer.new()
 	mic_player.stream = AudioStreamMicrophone.new()
@@ -30,28 +30,14 @@ func _ready():
 
 	print("Micro activé et prêt.")
 
-func _process(_delta):
-	if capture and capture.can_get_buffer(512):
-		var samples = capture.get_buffer(512)
-		if samples.is_empty():
-			print("Aucun échantillon capturé.")
-			return
-
-		var amplitude = _calculate_amplitude(samples)
-		setMicroValue(amplitude)
-
-
-func setMicroValue(amplitude):
-	if amplitude <= 0:
-		return
-	amplitude = amplitude * 4
-	if(laser):
-		laser.setAngle(amplitude * PI)
-	#print(amplitude * PI)
+func average(array : Array) -> float:
+	var sum : float = 0
+	for val in array:
+		sum+= val
+	return sum / array.size()
 	
-
-func _calculate_amplitude(samples: PackedVector2Array) -> float:
-	var sum = 0.0
-	for s in samples:
-		sum += abs(s.x)  # Mono / canal gauche
-	return sum / samples.size()
+func _process(_delta):
+	var frequencies = spectrum_analyzer.analyze(spectrum)
+	var amplitude = average(frequencies)
+	#print(amplitude)
+	laser.setAngle(amplitude / max_amplitude * 2 * PI)

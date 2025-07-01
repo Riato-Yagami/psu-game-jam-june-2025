@@ -35,9 +35,21 @@ func average(array : Array) -> float:
 	for val in array:
 		sum+= val
 	return sum / array.size()
-	
+
+# Debug_var
+var min_note = 1000
+var max_note = 0
 func _process(_delta):
-	var frequencies = spectrum_analyzer.analyze(spectrum)
+	var frequencies = spectrum_analyzer.analyze(spectrum,700,30)
 	var amplitude = average(frequencies)
-	#print(amplitude)
-	laser.setAngle(amplitude / max_amplitude * 2 * PI)
+	var note = Parse.notes(frequencies,700,30)
+	#print(note)
+
+	if(note > 0):
+		min_note = min(note,min_note)
+		max_note = max(note,max_note)
+		#print(min_note," ",max_note)
+		var adjusted_note = (note - 46.0) / (76.0 - 46.0)
+		print(adjusted_note)
+		laser.setAngle(adjusted_note * 2 * PI)
+	#laser.setAngle(amplitude / max_amplitude * 2 * PI)

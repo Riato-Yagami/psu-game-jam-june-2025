@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://b38wjvim4a85l"]
 
-[ext_resource type="Script" uid="uid://2f14srv1ljek" path="res://scripts/managers/audio_manager.gd" id="1_8qd8g"]
-[ext_resource type="Script" uid="uid://b6fa5xhp6n2vn" path="res://scripts/spectrum_analyzer.gd" id="2_liach"]
+[ext_resource type="Script" uid="uid://2f14srv1ljek" path="res://scripts/audio/audio_manager.gd" id="1_8qd8g"]
+[ext_resource type="Script" uid="uid://b6fa5xhp6n2vn" path="res://scripts/audio/spectrum_analyzer.gd" id="2_liach"]
 [ext_resource type="Material" uid="uid://heeper4118ft" path="res://shaders/spectrum_analyzer.tres" id="3_3asnw"]
 
 [node name="AudioManager" type="Node" node_paths=PackedStringArray("spectrum_analyzer")]

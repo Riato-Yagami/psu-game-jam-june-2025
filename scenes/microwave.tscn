@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://c8eyx0mco4tw"]
+[gd_scene load_steps=15 format=3 uid="uid://c8eyx0mco4tw"]
 
 [ext_resource type="Script" uid="uid://cvm010pisha4a" path="res://scripts/microwave.gd" id="1_7nepw"]
 [ext_resource type="PackedScene" uid="uid://di75s73a4mdmn" path="res://scenes/plate.tscn" id="2_bf2ql"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://bvvrexuvoddyb" path="res://sprites/microwave/top.png" id="7_upun8"]
 [ext_resource type="Texture2D" uid="uid://bcn4m1c322i4o" path="res://sprites/microwave/open-face.png" id="9_s8jgt"]
 [ext_resource type="PackedScene" uid="uid://cjjw1orhs8sw6" path="res://scenes/timer.tscn" id="10_svbq6"]
+[ext_resource type="PackedScene" uid="uid://d0q4j5ai0taon" path="res://scenes/spectrum_analyzer.tscn" id="11_svbq6"]
 
 [node name="Microwave" type="Node3D" node_paths=PackedStringArray("door", "panel_buttons", "plate", "level_timer")]
 script = ExtResource("1_7nepw")
@@ -61,7 +62,7 @@ alpha_cut = 1
 texture = ExtResource("3_s8jgt")
 
 [node name="LevelTimer" parent="Frame/Interior/Sides/Back" instance=ExtResource("10_svbq6")]
-transform = Transform3D(1, 0, 0, 0, 1, -8.74228e-08, 0, 8.74228e-08, 1, 0.952168, 0.629455, -0.503048)
+transform = Transform3D(1, 0, 0, 0, 1, -8.74228e-08, 0, 8.74228e-08, 1, -0.650269, 0.629455, -0.503048)
 
 [node name="LR" type="Node3D" parent="Frame/Interior/Sides"]
 
@@ -70,6 +71,9 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.85, 
 shaded = true
 alpha_cut = 1
 texture = ExtResource("4_fjhug")
+
+[node name="SpectrumAnalyzer" parent="Frame/Interior/Sides/LR/Left" instance=ExtResource("11_svbq6")]
+transform = Transform3D(-1, 1.50996e-07, -6.60024e-15, 0, -4.37114e-08, -1, -1.50996e-07, -1, 4.37114e-08, -0.036, -0.505, -0.01)
 
 [node name="Right" type="Sprite3D" parent="Frame/Interior/Sides/LR"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.85, 0, 0)

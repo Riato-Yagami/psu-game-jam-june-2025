@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dps27etce03h0" path="res://scripts/laser.gd" id="1_xmihv"]
 [ext_resource type="Texture2D" uid="uid://1sqv1tjfumdh" path="res://sprites/wave/laser.png" id="2_a7dhc"]
 [ext_resource type="Material" uid="uid://y3swu0ogmn4x" path="res://shaders/beam.tres" id="2_jjj73"]
-[ext_resource type="Material" uid="uid://bauf6uicb4ua0" path="res://shaders/beam3D.tres" id="4_412cd"]
+[ext_resource type="Material" uid="uid://h2gtcvnejl31" path="res://shaders/wave.tres" id="5_q8rul"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_jjj73"]
 size = Vector2(4, 2)
@@ -42,7 +42,7 @@ texture = ExtResource("2_a7dhc")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
-material_override = ExtResource("4_412cd")
-material_overlay = ExtResource("4_412cd")
+material_override = ExtResource("5_q8rul")
+material_overlay = ExtResource("5_q8rul")
 transparency = 1.0
 mesh = SubResource("PlaneMesh_jjj73")

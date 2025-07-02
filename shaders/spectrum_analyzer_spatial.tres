@@ -1,0 +1,8 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://4u6i00utfvlv"]
+
+[ext_resource type="Shader" uid="uid://boqph5tmgutw1" path="res://shaders/spectrum_analyzer_spatial.gdshader" id="1_r2ml5"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_r2ml5")
+shader_parameter/freq_data = PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)

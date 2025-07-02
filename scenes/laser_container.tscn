@@ -3,8 +3,26 @@
 [ext_resource type="Script" uid="uid://cgmwvf0of88qd" path="res://scripts/laser_container.gd" id="1_6g80j"]
 [ext_resource type="PackedScene" uid="uid://di8xtqma6f0jn" path="res://scenes/laser.tscn" id="2_6227g"]
 
-[node name="LaserContainer" type="Node3D" node_paths=PackedStringArray("laser")]
+[node name="LaserContainer" type="Node3D" node_paths=PackedStringArray("laser", "points")]
 script = ExtResource("1_6g80j")
 laser = NodePath("Laser")
+points = [NodePath("Points/Point1"), NodePath("Points/Point2")]
 
 [node name="Laser" parent="." instance=ExtResource("2_6227g")]
+
+[node name="Points" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.253361, 0)
+
+[node name="Point2" type="Node3D" parent="Points"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.0865)
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="Points/Point2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.275)
+radius = 0.1
+
+[node name="Point1" type="Node3D" parent="Points"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.63246)
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="Points/Point1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.275)
+radius = 0.1

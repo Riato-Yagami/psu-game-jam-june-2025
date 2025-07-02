@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://d0q4j5ai0taon"]
+
+[ext_resource type="Material" uid="uid://4u6i00utfvlv" path="res://shaders/spectrum_analyzer_spatial.tres" id="1_abqs8"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_upun8"]
+size = Vector2(3.79, 0.95)
+
+[node name="SpectrumAnalyzer" type="MeshInstance3D"]
+transform = Transform3D(-1, 8.74228e-08, 4.37114e-08, -4.37114e-08, 1.91069e-15, -1, -8.74228e-08, -1, 1.91069e-15, 0, 0, 0)
+material_override = ExtResource("1_abqs8")
+mesh = SubResource("PlaneMesh_upun8")

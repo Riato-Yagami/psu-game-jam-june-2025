@@ -1,0 +1,14 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://h2gtcvnejl31"]
+
+[ext_resource type="Shader" uid="uid://cnsrkoecs3iij" path="res://shaders/wave.gdshader" id="1_n3oaj"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_n3oaj")
+shader_parameter/sin_amp = 0.1
+shader_parameter/sin_freq = 2.065
+shader_parameter/sin_speed = 8.455
+shader_parameter/stripe_thickness = 0.04
+shader_parameter/outline_size = 0.09
+shader_parameter/color = Color(0.91, 1, 1, 1)
+shader_parameter/outline_color = Color(0.5, 1, 0.96, 1)

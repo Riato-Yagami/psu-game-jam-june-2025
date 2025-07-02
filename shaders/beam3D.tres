@@ -6,7 +6,7 @@
 render_priority = 0
 shader = ExtResource("1_bvkv6")
 shader_parameter/beams = 2
-shader_parameter/energy = 15.9
+shader_parameter/energy = 3.0
 shader_parameter/roughness = 3
 shader_parameter/frequency = 10
 shader_parameter/speed = 1.0

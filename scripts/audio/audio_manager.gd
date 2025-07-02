@@ -47,34 +47,31 @@ var min_freq = 50
 var max_freq = 700
 var freq_count = 30
 
+# Jules conf
+#var min_f = 180
+#var max_f = 550
+
+var min_f = 250
+var max_f = 400
+
 func _process(_delta):
 	var frequencies = spectrum_analyzer.analyze(spectrum,min_freq,max_freq,freq_count)
 	var amplitude = average(frequencies)
-	#var note = Parse.notes(frequencies,50,700,30)
-	var freq = FrequencyParser.dominant_freq(frequencies,min_freq,max_freq,freq_count)
-	#var pitch = FrequencyParser.pitch_hps(frequencies,min_freq,max_freq,freq_count)
-	
-	if(freq > 0):
+	shader_material.set_shader_parameter("sin_amp", amplitude * 0.05)
+
+	if(amplitude > 0):
+		var freq = FrequencyParser.dominant_freq(frequencies,min_freq,max_freq,freq_count)
+		min_f = min(freq + 50,min_f)
+		max_f = max(freq - 50,max_f)
+		#print(min_f," ",max_f) # 108.333333333333 628.333333333333
 		shader_material.set_shader_parameter("sin_freq", freq / 20.0)
-		shader_material.set_shader_parameter("sin_amp", amplitude * 0.05)
-		var midi = FrequencyParser.midi(freq)
-		#print(midi)
-		var adjusted_midi = float(midi - min_midi) / max(max_midi - min_midi,1)
-		adjusted_midi = clamp(adjusted_midi,0,1)
-		#print(midi)
-		laserContainer.set_laser_position(_delta, adjusted_midi)
-		#print(freq)
-		#laserContainer.set_laser_position(_delta, freq / (max_freq - min_freq))
-	else :
-		shader_material.set_shader_parameter("sin_amp", 0)
-	#if(note > 0):
-		#print(note)
-#
-		##min_note = min(note,min_note)
-		##max_note = max(note,max_note)
-		##print(min_note," ",max_note)
-		
-		#print(adjusted_note)
-		##laser.setAngle(adjusted_note * 2 * PI)
-		#laserContainer.set_laser_position(_delta, adjusted_note)
-	##laser.setAngle(amplitude / max_amplitude * 2 * PI)
+		var adjusted_freq = adjust(freq,min_f,max_f)
+		laserContainer.set_laser_position(_delta, adjusted_freq)
+		#var midi = FrequencyParser.midi(freq)
+		#var adjusted_midi = adjust(freq,min_midi,max_midi)
+		#laserContainer.set_laser_position(_delta, adjusted_midi)
+
+func adjust(val, min, max):
+	var adjusted = float(val - min) / max(max - min,1)
+	adjusted = clamp(adjusted,0,1)
+	return adjusted

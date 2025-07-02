@@ -15,14 +15,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.253361, 0)
 
 [node name="Point2" type="Node3D" parent="Points"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.0865)
+visible = false
 
 [node name="CSGSphere3D" type="CSGSphere3D" parent="Points/Point2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.275)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.35)
 radius = 0.1
 
 [node name="Point1" type="Node3D" parent="Points"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.63246)
+visible = false
 
 [node name="CSGSphere3D" type="CSGSphere3D" parent="Points/Point1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.275)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.35)
 radius = 0.1

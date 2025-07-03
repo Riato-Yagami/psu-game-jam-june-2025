@@ -5,6 +5,9 @@ var tcp := StreamPeerTCP.new()
 
 @export var microwave : Microwave
 @export var time_manager : TimeManager
+@export var camera_manager : CameraManager
+@export var laser_container : LaserContainer
+
 var player : Player
 
 var in_game : bool = false
@@ -24,7 +27,8 @@ func start_game():
 	time_manager.start_timer()
 	microwave.door.open()
 	microwave.panel_buttons.hide_hand()
-	$CameraNode.set_camera_fight()
+	laser_container.laser.reset()
+	camera_manager.set_camera_fight()
 	in_game = true
 	SoundManager.play("beep")
 	emit_signal("on_game_start")
@@ -38,7 +42,7 @@ func game_over(player_win : bool = true):
 	microwave.door.post_it_notes.get_node("PastaWin").visible = player_win
 	microwave.door.post_it_notes.get_node("CookerWin").visible = !player_win
 	microwave.door.close()
-	$CameraNode.set_camera_menu()
+	camera_manager.set_camera_menu()
 	#microwave.panel_buttons.select_button(microwave.panel_buttons.current_button_id)
 
 #func connect_audio():

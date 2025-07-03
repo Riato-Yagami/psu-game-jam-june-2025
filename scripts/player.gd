@@ -105,6 +105,8 @@ func _recieve_damage(value: float) -> void:
 	currentHealth -= value
 	#$GPUParticles3D.amount_ratio = maxSmokeParticles * (1 - currentHealth / maxHealth)
 	$GPUParticles3D.amount_ratio = (1 - currentHealth / maxHealth)
+	SceneManager.game.camera_manager.apply_shake(0.05)
+	RumbleManager.medium()
 	if (currentHealth <= 0):
 		#active = false
 		$AnimationPlayer.play("Death")

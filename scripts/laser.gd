@@ -6,9 +6,15 @@ class_name Laser
 @export var DRAG = .8
 
 @export var raycast : RayCast3D
+@export var target : Node3D
+@export var meshAnchor : Node3D
+
+var deployement : float = 0
+@export var deployement_speed : float = 1.0
+@export var deployement_delay : float = 0.75
+
 var pshhCooldown : float = 0.3
 var pshhTimer : float = 0
-
 
 const SCROLL_WAY_SPEED = PI/6
 const SCROLL_WAY_MAX_SPEED = 5 * SCROLL_WAY_SPEED
@@ -37,7 +43,25 @@ func scrollWayDown():
 	if scrollWay < -SCROLL_WAY_MAX_SPEED:
 		scrollWay = -SCROLL_WAY_MAX_SPEED
 
+func reset():
+	deployement = 0
+	meshAnchor.scale.x = 0.001
+	raycast.target_position.x = 0
+	
+func deploy(delta: float):
+	if(deployement > deployement_delay):
+		meshAnchor.scale.x = deployement - deployement_delay
+		raycast.target_position.x = lerp(
+			0.0,
+			target.global_position.x - raycast.global_position.x,
+			deployement - deployement_delay
+		)
+	deployement += deployement_speed * delta
+	
 func _process(delta: float) -> void:
+	if(deployement < deployement_delay + 1 and SceneManager.game.in_game):
+		deploy(delta)
+		
 	if useScrollWay:
 		rotation.y += scrollWay * delta
 		scrollWay *= DRAG

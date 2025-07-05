@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://dj2gnbaep5uq1" path="res://sprites/microwave/control-panel.png" id="1_sst7w"]
 [ext_resource type="Script" uid="uid://bhenpk0xc5wcj" path="res://scripts/buttons/panel_buttons.gd" id="2_xias7"]
-[ext_resource type="Script" uid="uid://cx4ra1yxjgk6q" path="res://scripts/laser_angle_button.gd" id="3_fpnrg"]
+[ext_resource type="Script" uid="uid://cx4ra1yxjgk6q" path="res://scripts/buttons/laser_angle_button.gd" id="3_fpnrg"]
 [ext_resource type="Texture2D" uid="uid://6vne2f51qpb5" path="res://sprites/microwave/buttons/round-button.png" id="4_hm66o"]
 [ext_resource type="Texture2D" uid="uid://b6slr5m618gjv" path="res://sprites/hand/point.png" id="5_xofwo"]
 [ext_resource type="Script" uid="uid://cvpvk5qk3cubx" path="res://scripts/buttons/open_button.gd" id="6_gstug"]

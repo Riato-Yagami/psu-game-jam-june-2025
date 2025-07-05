@@ -37,7 +37,7 @@ script = ExtResource("3_83dcw")
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.0847301, 0.261593, 0)
 
 [node name="Versus" type="Node3D" parent="Anchor/Face/PositItNotes/Tutorial"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.426655, 0.82442, 0)
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, -0.34758, 0.688724, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Anchor/Face/PositItNotes/Tutorial/Versus"]
 visible = false
@@ -59,6 +59,7 @@ alpha_cut = 1
 texture = ExtResource("6_41c0y")
 
 [node name="Controls" type="Node3D" parent="Anchor/Face/PositItNotes/Tutorial"]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 0.011261, 0, 0)
 
 [node name="Controls" type="Sprite3D" parent="Anchor/Face/PositItNotes/Tutorial/Controls"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.57034, -0.536359, 0)
@@ -124,3 +125,8 @@ texture = ExtResource("4_18pbm")
 shaded = true
 alpha_cut = 1
 texture = ExtResource("6_q5w8r")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.999938, -0.0111698, 0, 0.0111698, -0.999938, 0, 1.16284, -4.6084)
+visible = false
+sky_mode = 1

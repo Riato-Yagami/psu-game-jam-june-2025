@@ -7,6 +7,7 @@ class_name LaserContainer
 @export var points : Array[Node3D]
 @export var laser_speed : float = 10
 
+#func _process(delta: float) -> void:
 func set_laser_position(_delta : float, value : float):
 	#print(_delta)
 	var target : float = lerp(points[0].position.z,points[1].position.z,value)

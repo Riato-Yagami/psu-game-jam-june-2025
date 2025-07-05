@@ -9,6 +9,8 @@ class_name Laser
 @export var target : Node3D
 @export var meshAnchor : Node3D
 
+@export var laser_container : LaserContainer
+
 var deployement : float = 0
 @export var deployement_speed : float = 1.0
 @export var deployement_delay : float = 0.75
@@ -22,7 +24,7 @@ const SCROLL_AIM_SPEED = PI/2
 
 var scrollWay = 0
 var scrollAim = 0
-var useScrollWay = true
+@export var useScrollWay = true
 
 func _init():
 	position = Vector3(0, 0, POS_Z)
@@ -61,12 +63,15 @@ func deploy(delta: float):
 func _process(delta: float) -> void:
 	if(deployement < deployement_delay + 1 and SceneManager.game.in_game):
 		deploy(delta)
-		
+	
 	if useScrollWay:
-		rotation.y += scrollWay * delta
-		scrollWay *= DRAG
-	else:
-		rotation.y += (scrollAim - rotation.y) * delta * SCROLL_AIM_SPEED
+		position.z += scrollWay * delta
+		position.z = clamp(position.z, laser_container.points[0].position.z,laser_container.points[1].position.z)
+	#if useScrollWay:
+		#rotation.y += scrollWay * delta
+		#scrollWay *= DRAG
+	#else:
+		#rotation.y += (scrollAim - rotation.y) * delta * SCROLL_AIM_SPEED
 	
 	if (raycast.is_colliding() and SceneManager.game.in_game):
 		pshh(delta)

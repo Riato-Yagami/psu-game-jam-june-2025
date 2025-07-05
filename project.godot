@@ -27,6 +27,11 @@ SoundManager="*res://scripts/auto-load/sound_manager.gd"
 RumbleManager="*res://scripts/auto-load/rumble_manager.gd"
 SleepManager="*res://scripts/auto-load/sleep_manager.gd"
 
+[display]
+
+window/size/viewport_width=1080
+window/size/viewport_height=720
+
 [input]
 
 move_up={

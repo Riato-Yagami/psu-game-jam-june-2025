@@ -8,7 +8,8 @@ script = ExtResource("1_6g80j")
 laser = NodePath("Laser")
 points = [NodePath("Points/Point1"), NodePath("Points/Point2")]
 
-[node name="Laser" parent="." instance=ExtResource("2_6227g")]
+[node name="Laser" parent="." node_paths=PackedStringArray("laser_container") instance=ExtResource("2_6227g")]
+laser_container = NodePath("..")
 
 [node name="Points" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.253361, 0)

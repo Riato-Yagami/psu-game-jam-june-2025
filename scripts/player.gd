@@ -42,6 +42,8 @@ func _reset_player():
 	inJump = false
 	$CollisionShape3D.disabled = false
 	$GPUParticles3D.amount_ratio = 0
+	position = Vector3(0,0.2,0)
+	mesh_parent.visible = true
 	#active = true
 
 func footStep(delta):

@@ -30,7 +30,7 @@ microwave = NodePath("..")
 [node name="Frame" type="Node3D" parent="."]
 
 [node name="Face" type="Node3D" parent="Frame"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.099, 1.141, -1.85)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.099, 1.141, -1.92)
 
 [node name="Door" parent="Frame/Face" instance=ExtResource("3_fjhug")]
 

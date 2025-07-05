@@ -23,6 +23,8 @@ func _process(delta: float) -> void:
 	else: if (close_timer > 0):
 		close_timer -= delta
 		anchor.rotation.y = lerp(0.0, - PI / 2, close_timer/open_close_duration)
+		if(close_timer <= 0.5):
+			SceneManager.game.player.mesh_parent.visible = false
 		if (close_timer <= 0):
 			anchor.rotation.y = 0
 			SoundManager.play("door_close")

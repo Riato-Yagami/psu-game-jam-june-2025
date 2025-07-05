@@ -1,7 +1,8 @@
-[gd_scene load_steps=16 format=3 uid="uid://dmiu472ygpkbj"]
+[gd_scene load_steps=17 format=3 uid="uid://dmiu472ygpkbj"]
 
 [ext_resource type="Script" uid="uid://vgmjrsoa1t7x" path="res://scripts/player.gd" id="1_3vyb7"]
 [ext_resource type="PackedScene" uid="uid://cynk8q12exnym" path="res://Models/PastaBox.glb" id="2_g2els"]
+[ext_resource type="Script" uid="uid://ytftie1nfsv8" path="res://scripts/mesh_parent.gd" id="3_dqkch"]
 [ext_resource type="Texture2D" uid="uid://8ihfacjuqecs" path="res://sprites/Particles/smoke_01.png" id="3_qhqgy"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_yqjtg"]
@@ -215,9 +216,10 @@ particles_anim_loop = false
 [sub_resource type="QuadMesh" id="QuadMesh_qlg0r"]
 material = SubResource("StandardMaterial3D_dqkch")
 
-[node name="Player" type="CharacterBody3D"]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("mesh_parent")]
 collision_layer = 2
 script = ExtResource("1_3vyb7")
+mesh_parent = NodePath("PastaBoxParent/PastaBox")
 speed = 1.8
 runThreshold = 0.0
 maxHealth = 4.0
@@ -237,6 +239,7 @@ libraries = {
 
 [node name="PastaBox" parent="PastaBoxParent" instance=ExtResource("2_g2els")]
 transform = Transform3D(0.16287, 0, 0, 0, 0.187072, 0, 0, 0, 0.16287, 0, 0, 0)
+script = ExtResource("3_dqkch")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
 lifetime = 0.3

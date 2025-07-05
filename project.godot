@@ -25,6 +25,7 @@ driver/enable_input=true
 SceneManager="*res://scripts/auto-load/scene_manager.gd"
 SoundManager="*res://scripts/auto-load/sound_manager.gd"
 RumbleManager="*res://scripts/auto-load/rumble_manager.gd"
+SleepManager="*res://scripts/auto-load/sleep_manager.gd"
 
 [input]
 

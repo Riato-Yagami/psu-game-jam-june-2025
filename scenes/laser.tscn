@@ -21,12 +21,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
 
 [node name="CSGSphere3D" type="CSGSphere3D" parent="Points/Point2"]
+visible = false
 radius = 0.1
 
 [node name="Point1" type="Node3D" parent="Points"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
 
 [node name="CSGSphere3D" type="CSGSphere3D" parent="Points/Point1"]
+visible = false
 radius = 0.1
 
 [node name="RayCast3D" type="RayCast3D" parent="Points/Point1"]

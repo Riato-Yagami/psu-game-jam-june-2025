@@ -62,7 +62,7 @@ alpha_cut = 1
 texture = ExtResource("3_s8jgt")
 
 [node name="LevelTimer" parent="Frame/Interior/Sides/Back" instance=ExtResource("10_svbq6")]
-transform = Transform3D(1, 0, 0, 0, 1, -8.74228e-08, 0, 8.74228e-08, 1, -0.650269, 0.629455, -0.503048)
+transform = Transform3D(1, 0, 0, 0, 1, -8.74228e-08, 0, 8.74228e-08, 1, -0.8109, 0.629455, -0.503048)
 
 [node name="LR" type="Node3D" parent="Frame/Interior/Sides"]
 

@@ -2,12 +2,16 @@ extends CharacterBody3D
 class_name Player
 
 @export var plate : Plate
+@export var mesh_parent : MeshParent
 
 var direction : Vector2
 @export var speed : float = 1
 @export var runThreshold : float = 0.2
 @export var currentHealth : float = 1
 @export var maxHealth : float = 10
+
+var shake_strength : float = 0.05
+#var taking_damage : bool = false
 #@export var active : bool
 
 @export var jumpWindupDuration : float = 0.01
@@ -50,6 +54,9 @@ func footStep(delta):
 func _physics_process(delta: float) -> void:
 	if (!SceneManager.game.in_game):
 		return
+	
+	if(!inJump):
+		mesh_parent.modulate(lerp(Color.WHITE, Color.RED, 0.75 * (SceneManager.game.camera_manager.shake_strength / shake_strength)))
 		
 	if (Input.is_action_just_pressed("action")):
 		_try_jump()
@@ -79,11 +86,13 @@ func _physics_process(delta: float) -> void:
 	
 	if (jumpWindupTimer > 0):
 		jumpWindupTimer -= delta
+		mesh_parent.modulate(lerp(Color.WHITE, Color.LIGHT_SKY_BLUE,0.5 * (1 - jumpWindupTimer / jumpCooldownDuration)))
 		if (jumpWindupTimer <= 0):
 			jumpInvincibleTimer = jumpInvincibleDuration
 			SoundManager.play("jump2")
 			$CollisionShape3D.disabled = true
 	else: if (jumpInvincibleTimer > 0):
+		#mesh_parent.modulate(lerp(Color.WHITE, Color.LIGHT_SKY_BLUE,1 - jumpInvincibleTimer / jumpInvincibleDuration))
 		jumpInvincibleTimer -= delta
 		if (jumpInvincibleTimer <= 0):
 			jumpRecoveryTimer = jumpRecoveryDuration
@@ -96,6 +105,7 @@ func _physics_process(delta: float) -> void:
 	else: if (jumpCooldownTimer > 0):
 		jumpCooldownTimer -= delta
 		if (jumpCooldownTimer <= 0):
+			mesh_parent.modulate(Color.WHITE)
 			jumpCooldownTimer = 0
 	
 	#_recieve_damage(delta)
@@ -103,10 +113,14 @@ func _physics_process(delta: float) -> void:
 
 func _recieve_damage(value: float) -> void:
 	currentHealth -= value
+	var amout : float = (1 - currentHealth / maxHealth)
 	#$GPUParticles3D.amount_ratio = maxSmokeParticles * (1 - currentHealth / maxHealth)
-	$GPUParticles3D.amount_ratio = (1 - currentHealth / maxHealth)
-	SceneManager.game.camera_manager.apply_shake(0.05)
+	$GPUParticles3D.amount_ratio = amout
+	SceneManager.game.camera_manager.apply_shake(shake_strength)
+	#mesh_parent.modulate(Color.RED,0.25)
+	
 	RumbleManager.medium()
+	#mesh_parent.modulate(lerp(Color.WHITE, Color.RED, amout))
 	if (currentHealth <= 0):
 		#active = false
 		$AnimationPlayer.play("Death")

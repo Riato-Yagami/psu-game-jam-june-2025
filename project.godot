@@ -10,10 +10,11 @@ config_version=5
 
 [application]
 
-config/name="PSU Game Jam - June 2025"
+config/name="Undercooked"
+config/description="Made for PSU Game Jam June 2025"
 run/main_scene="uid://cmk2sbg4cq2sc"
 config/features=PackedStringArray("4.4", "Forward Plus")
-config/icon="res://sprites/icon.svg"
+config/icon="uid://dcuo3q6e4ii82"
 
 [audio]
 

@@ -51,8 +51,8 @@ var freq_count = 30
 #var min_f = 180
 #var max_f = 550
 
-var min_f = 250
-var max_f = 400
+var min_f = 300
+var max_f = 350
 
 func _process(_delta):
 	var frequencies = spectrum_analyzer.analyze(spectrum,min_freq,max_freq,freq_count)

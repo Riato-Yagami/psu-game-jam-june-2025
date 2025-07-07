@@ -223,7 +223,6 @@ mesh_parent = NodePath("PastaBoxParent/PastaBox")
 speed = 1.8
 runThreshold = 0.0
 maxHealth = 4.0
-jumpWindupDuration = 0.05
 jumpCooldownDuration = 0.1
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

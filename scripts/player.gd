@@ -14,6 +14,9 @@ var shake_strength : float = 0.05
 #var taking_damage : bool = false
 #@export var active : bool
 
+var jumpActionTimer : float = 0
+@export var jumpActionDuration : float = 0.23
+
 @export var jumpWindupDuration : float = 0.01
 @export var jumpInvincibleDuration : float = .7
 @export var jumpRecoveryDuration : float = .05
@@ -60,7 +63,7 @@ func _physics_process(delta: float) -> void:
 	if(!inJump):
 		mesh_parent.modulate(lerp(Color.WHITE, Color.RED, 0.75 * (SceneManager.game.camera_manager.shake_strength / shake_strength)))
 		
-	if (Input.is_action_just_pressed("action")):
+	if (Input.is_action_just_pressed("action") or jumpActionTimer > 0):
 		_try_jump()
 	
 	direction = Input.get_vector("move_right","move_left","move_down","move_up")
@@ -109,6 +112,9 @@ func _physics_process(delta: float) -> void:
 		if (jumpCooldownTimer <= 0):
 			mesh_parent.modulate(Color.WHITE)
 			jumpCooldownTimer = 0
+			
+	if(jumpActionTimer > 0):
+		jumpActionTimer -= delta
 	
 	#_recieve_damage(delta)
 	#rotation = angle 
@@ -135,3 +141,5 @@ func _try_jump():
 		#print("jump")
 		inJump = true
 		jumpWindupTimer = jumpWindupDuration
+	else : if jumpActionTimer <= 0:
+		jumpActionTimer = jumpActionDuration

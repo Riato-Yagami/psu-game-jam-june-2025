@@ -5,7 +5,7 @@ class_name LaserContainer
 #
 @export var laser : Laser
 @export var points : Array[Node3D]
-@export var laser_speed : float = 10
+@export var laser_speed : float = 8
 
 #func _process(delta: float) -> void:
 func set_laser_position(_delta : float, value : float):

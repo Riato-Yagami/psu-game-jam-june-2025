@@ -48,7 +48,9 @@ script = ExtResource("7_0etsd")
 metadata/_custom_type_script = "uid://cvpvk5qk3cubx"
 
 [node name="Sprite" type="Sprite3D" parent="Buttons/OpenButton"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0556697, 0, 0)
 sorting_offset = 5.0
+flip_h = true
 shaded = true
 alpha_cut = 1
 texture = ExtResource("3_5q0ia")
